@@ -14,7 +14,7 @@ function createWindow() {
   });
 
   // Proje sergisi web sitesini yükle
-  win.loadURL('https://projesergisi.vahaptecim.com.tr/');
+  win.loadFile('index.html');
 
   // F11 tuşu ile tam ekran modunu kapatma
   win.on('keydown', (event) => {
