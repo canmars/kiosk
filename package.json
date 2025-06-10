@@ -1,0 +1,22 @@
+{
+    "name": "deu-kiosk",
+    "version": "1.0.0",
+    "description": "DEU Proje Sergisi Kiosk Uygulaması",
+    "main": "main.js",
+    "scripts": {
+      "start": "electron .",
+      "build": "electron-builder"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "electron": "^28.1.0",
+      "electron-builder": "^24.9.1"
+    },
+    "build": {
+      "appId": "com.deu.kiosk",
+      "win": {
+        "target": "portable"
+      }
+    }
+  }
