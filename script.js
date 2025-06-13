@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Menü butonları için event listener
+    // Menü butonları ile içerik geçişi
     const menuButtons = document.querySelectorAll('.menu-btn');
     const contentPages = document.querySelectorAll('.content-page');
 
-    menuButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Aktif menü butonunu güncelle
-            menuButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            // İlgili içerik sayfasını göster
-            const targetPage = button.getAttribute('data-page');
-            contentPages.forEach(page => {
-                page.classList.remove('active');
-                if (page.id === targetPage) {
-                    page.classList.add('active');
+    menuButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            menuButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const page = this.getAttribute('data-page');
+            contentPages.forEach(cp => {
+                if (cp.id === page) {
+                    cp.classList.add('active');
+                } else {
+                    cp.classList.remove('active');
                 }
             });
         });

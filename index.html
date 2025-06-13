@@ -8,25 +8,84 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sol Menü -->
-            <div class="col-md-3 sidebar">
-                <div class="logo-container">
-                    <img src="assets/deu-logo.png" alt="DEU Logo" class="logo">
-                </div>
-                <div class="menu-items">
-                    <button class="menu-btn active" data-page="proje-sergisi">Proje Sergisi</button>
-                    <button class="menu-btn" data-page="kroki">Kampüs Kroki</button>
-                    <button class="menu-btn" data-page="duyurular">Duyurular</button>
-                    <button class="menu-btn" data-page="afisler">Afişler</button>
-                </div>
+    <!-- Minimalist Üst Menü (Navbar) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/deu-logo.png" alt="DEU Logo" class="logo me-2" style="max-height:48px;">
+                <span class="fw-bold text-primary">DEÜ YBS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center gap-2">
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn active" data-page="proje-sergisi">Proje Sergisi</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="ders-programi">Ders Programı</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="kroki">Kroki</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="duyurular">Duyurular</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="afisler">Afişler</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="kampus-bilgi">Kampüs Bilgilendirme</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="geri-bildirim">Geri Bildirim / Anket</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link menu-btn" data-page="mezunlar">Mezunlar Köşesi</button>
+                    </li>
+                </ul>
             </div>
-
-            <!-- Ana İçerik -->
-            <div class="col-md-9 main-content">
+        </div>
+    </nav>
+    <!-- Ana İçerik -->
+    <div class="container-fluid px-0">
+        <div class="row justify-content-center">
+            <div class="col-12 main-content">
                 <div id="proje-sergisi" class="content-page active">
-                    <iframe src="https://projesergisi.vahaptecim.com.tr/" frameborder="0"></iframe>
+                    <div class="project-explorer py-3">
+                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 gap-3">
+                            <h2 class="fw-bold mb-0 text-primary">Bitirme Projeleri Sergisi</h2>
+                            <div class="d-flex gap-2">
+                                <input type="text" class="form-control" placeholder="Proje veya öğrenci ara..." style="min-width:220px;">
+                                <select class="form-select" style="min-width:160px;">
+                                    <option>Tümü</option>
+                                    <option>Web Uygulamaları</option>
+                                    <option>Mobil Uygulamalar</option>
+                                    <option>Veri Analitiği</option>
+                                    <option>Diğer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-4"><!-- Proje kartları JS ile buraya eklenecek --></div>
+                        <div class="text-center mt-4 text-muted small">Toplam 103 proje listelenecek. (Şu anda örnek 3 proje gösteriliyor.)</div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="projectModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div id="ders-programi" class="content-page">
+                    <!-- Ders Programı içeriği buraya gelecek -->
                 </div>
                 <div id="kroki" class="content-page">
                     <div class="kroki-container">
@@ -74,13 +133,13 @@
                                     
                                     • 📝 09.00-10.00  Kayıt ve Karşılama
                                     • 🎤 10.00-10.05  Hoş Geldiniz Konuşması
-                                    • 🎨 10.05-10.50 Gökay Gedik – “Sanatçı Kim? İnsan mı, Yapay Zeka mı?”
-                                    • 📉 11.00-11.45 A. Göktuğ Aydın – “Projeler Neden Başarısız Olur?”
+                                    • 🎨 10.05-10.50 Gökay Gedik – "Sanatçı Kim? İnsan mı, Yapay Zeka mı?"
+                                    • 📉 11.00-11.45 A. Göktuğ Aydın – "Projeler Neden Başarısız Olur?"
                                     • 🍽 12.00-13.00  Yemek arası
-                                    • 🚀 13.00-13.50 Yasin Danyal – “Girişimcilikte KOSGEB Yolculuğu”
-                                    • 🧩 14.00-14.45 Ufuk Erdoğmuş – “Çok Yönlü Girişimcilik”
-                                    • 🎓 15.00-16.00 Prof. Dr. Vahap Tecim, Burak Demir, Hakan Akmanoğlu – “YBS'de Kariyer: Mezunlar Anlatıyor”
-                                    • 📊 16.15-17.00 İlhami Demirci – “Veri Kültürü Oluşturma Yolculuğu”
+                                    • 🚀 13.00-13.50 Yasin Danyal – "Girişimcilikte KOSGEB Yolculuğu"
+                                    • 🧩 14.00-14.45 Ufuk Erdoğmuş – "Çok Yönlü Girişimcilik"
+                                    • 🎓 15.00-16.00 Prof. Dr. Vahap Tecim, Burak Demir, Hakan Akmanoğlu – "YBS'de Kariyer: Mezunlar Anlatıyor"
+                                    • 📊 16.15-17.00 İlhami Demirci – "Veri Kültürü Oluşturma Yolculuğu"
                                     
                                     📅 2. Gün: Workshop Günü (23 Mayıs Cuma)
                                      📍 Yer: İİBF E Blok
@@ -98,7 +157,7 @@
                                     • 1 x Mouse 🖱
                                     • 1 x Telefon Standı🔺hediyesi kazanabilirsin!
                                     
-                                    🎫 Katılım için 6 oturumdan 5’ine katılıp yaka kartına çıkartma toplaman yeterli!.
+                                    🎫 Katılım için 6 oturumdan 5'ine katılıp yaka kartına çıkartma toplaman yeterli!.
                                     
                                     🟩 Katılım tamamen ücretsizdir.
                                     
@@ -111,11 +170,20 @@
                         <!-- Daha fazla afiş kartı eklenebilir -->
                     </div>
                 </div>
+                <div id="kampus-bilgi" class="content-page">
+                    <!-- Kampüs Bilgilendirme içeriği buraya gelecek -->
+                </div>
+                <div id="geri-bildirim" class="content-page">
+                    <!-- Geri Bildirim / Anket içeriği buraya gelecek -->
+                </div>
+                <div id="mezunlar" class="content-page">
+                    <!-- Mezunlar Köşesi içeriği buraya gelecek -->
+                </div>
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
+    <script src="projects.js"></script>
 </body>
 </html> 
