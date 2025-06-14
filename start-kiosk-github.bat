@@ -1,6 +1,6 @@
 @echo off
 REM GitHub Pages URL'sini buraya yazın
-set GITHUB_URL=https://kullaniciadi.github.io/deu-kiosk
+set GITHUB_URL=https://canmars.github.io/kiosk
 
 REM Chrome'u kiosk modunda başlat
 start "" "C:\Program Files\Google\Chrome\Application\chrome.exe" --kiosk "%GITHUB_URL%" --disable-pinch --overscroll-history-navigation=0 --disable-features=TranslateUI --disable-features=Translate
