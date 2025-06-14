@@ -142,6 +142,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tüm projelerle ilk render
     filterAndRenderProjects();
 
+    // Logo ve yazı kısmına tıklanınca Proje Sergisi'ne geçiş
+    const goToProjeSergisi = document.getElementById('goToProjeSergisi');
+    if (goToProjeSergisi) {
+        goToProjeSergisi.style.cursor = 'pointer';
+        goToProjeSergisi.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Menüde Proje Sergisi butonunu aktif yap
+            const projeBtn = document.querySelector('.menu-btn[data-page="proje-sergisi"]');
+            if (projeBtn) {
+                projeBtn.click();
+            }
+        });
+    }
+
 }); // DOMContentLoaded sonu
 
 // projects global olarak tanımlı olduğu için doğrudan kullanılabilir
