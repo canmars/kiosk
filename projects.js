@@ -4,9 +4,9 @@ const projects = [
     studentName: "Ayşe Yılmaz",
     studentNumber: "123456",
     description: "Kampüs içi kaynakların verimli yönetimi için web tabanlı bir platform.",
-    pdfUrl: "assets/rapor1.pdf",
-    posterUrl: "assets/poster1.pdf",
-    photoUrl: "assets/poster1.png"
+    pdfUrl: "assets/rapor-1.pdf",
+    posterUrl: "assets/rapor-1.pdf",
+    photoUrl: "assets/deneme-1.png"
   },
   {
     title: "Mobil Sağlık Takip Uygulaması",

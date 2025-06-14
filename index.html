@@ -85,7 +85,41 @@
                     </div>
                 </div>
                 <div id="ders-programi" class="content-page">
-                    <!-- Ders Programı içeriği buraya gelecek -->
+                    <div class="schedule-container py-4">
+                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 gap-3">
+                            <h2 class="fw-bold mb-0 text-primary">Ders Programı</h2>
+                            <div class="d-flex gap-2">
+                                <select class="form-select" id="termSelect" style="min-width:140px;">
+                                    <option value="guz">Güz Dönemi</option>
+                                    <option value="bahar">Bahar Dönemi</option>
+                                </select>
+                                <select class="form-select" id="yearSelect" style="min-width:120px;">
+                                    <option value="1">1. Sınıf</option>
+                                    <option value="2">2. Sınıf</option>
+                                    <option value="3">3. Sınıf</option>
+                                    <option value="4">4. Sınıf</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="termInfo" class="mb-3"></div>
+                        <div class="schedule-table-container">
+                            <table class="table table-bordered schedule-table">
+                                <thead>
+                                    <tr>
+                                        <th>Saat</th>
+                                        <th>Pazartesi</th>
+                                        <th>Salı</th>
+                                        <th>Çarşamba</th>
+                                        <th>Perşembe</th>
+                                        <th>Cuma</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="scheduleBody">
+                                    <!-- Ders programı JavaScript ile buraya eklenecek -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div id="kroki" class="content-page">
                     <div class="kroki-container">
@@ -185,5 +219,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     <script src="projects.js"></script>
+    <script src="schedule.js"></script>
 </body>
 </html> 
