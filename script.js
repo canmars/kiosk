@@ -1,22 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Menü butonları ile içerik geçişi
     const menuButtons = document.querySelectorAll('.menu-btn');
     const contentPages = document.querySelectorAll('.content-page');
+    const projectDetailModalElement = document.getElementById('projectDetailModal');
 
+    // Menü butonları ile içerik geçişi
     menuButtons.forEach(btn => {
         btn.addEventListener('click', function() {
-            // Aktif menü butonunu güncelle
             menuButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-
-            // Sayfa geçişini yap
             const page = this.getAttribute('data-page');
             contentPages.forEach(cp => {
-                if (cp.id === page) {
-                    cp.classList.add('active');
-                } else {
-                    cp.classList.remove('active');
-                }
+                cp.classList.toggle('active', cp.id === page);
             });
         });
     });
@@ -28,105 +22,89 @@ document.addEventListener('DOMContentLoaded', function() {
             const rect = krokiContainer.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
-            // Burada tıklanan konuma göre bilgi gösterme mantığı eklenebilir
             console.log(`Tıklanan konum: x=${x}, y=${y}`);
         });
     }
 
-    // Proje Sergisi: Proje kartlarını dinamik olarak oluştur ve modalları yönet
-    // renderProjects(); // Bu çağrı aşağıda filterAndRenderProjects() tarafından yapılacak
+    // Modal açıldığında verileri doldur
+    if (projectDetailModalElement) {
+        projectDetailModalElement.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            let projectData = {};
+            try {
+                projectData = JSON.parse(button.getAttribute('data-project').replace(/&apos;/g, "'"));
+            } catch (e) {
+                console.error("Proje verisi ayrıştırılamadı:", e);
+                projectData = {};
+            }
 
-    // Detay Modalı Dinleyici
-    const projectDetailModalElement = document.getElementById('projectDetailModal');
-    const projectDetailModal = new bootstrap.Modal(projectDetailModalElement);
+            // Medya konteynerini proje posteri veya fotoğrafı ile doldur
+            const mediaContainer = document.getElementById('modalMediaContainer');
+            if (projectData.posterUrl) {
+                // Eğer poster varsa, iframe içinde göster
+                mediaContainer.innerHTML = `<iframe src="${projectData.posterUrl}#toolbar=0" style="width: 100%; height: 100%; border: none;" title="Proje Posteri"></iframe>`;
+            } else {
+                // Eğer poster yoksa, proje fotoğrafını göster
+                mediaContainer.innerHTML = `<img id="modalProjectPhoto" src="${projectData.projectPhotoUrl || 'assets/project-placeholder.png'}" alt="Proje Fotoğrafı" class="img-fluid rounded">`;
+            }
 
-    projectDetailModalElement.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget; // Butonu tetikleyen element
-        let projectData = {};
-        try {
-            projectData = JSON.parse(button.getAttribute('data-project').replace(/&apos;/g, "'"));
-        } catch (e) {
-            projectData = {};
-        }
-        
-        // Modal her açıldığında detayları göster, medya içeriğini gizle
-        document.getElementById('projectDetailsContent').style.display = 'flex';
-        document.getElementById('projectMediaContent').style.display = 'none';
-        document.getElementById('modalMediaViewer').src = ''; // iFrame src'sini temizle
+            // Diğer modal içeriklerini doldur
+            document.getElementById('modalStudentPhoto').src = projectData.studentPhotoUrl || 'assets/student-placeholder.png';
+            document.getElementById('modalStudentName').textContent = projectData.studentName;
+            document.getElementById('modalProjectTitle').textContent = projectData.title;
+            document.getElementById('modalProjectCategory').textContent = projectData.category;
+            document.getElementById('modalProjectDescription').textContent = projectData.description;
 
-        document.getElementById('modalProjectTitle').textContent = projectData.title;
-        document.getElementById('modalProjectCategory').textContent = projectData.category;
-        document.getElementById('modalProjectDescription').textContent = projectData.description.replace(/\\n/g, '<br>');
-        document.getElementById('modalStudentName').textContent = projectData.studentName;
-        document.getElementById('modalProjectPhoto').src = projectData.projectPhotoUrl || 'assets/project-placeholder.png';
-        document.getElementById('modalStudentPhoto').src = projectData.studentPhotoUrl || 'assets/student-placeholder.png';
-        
-        const tagsContainer = document.getElementById('modalProjectTags');
-        tagsContainer.innerHTML = ''; // Önceki etiketleri temizle
-        projectData.tags.forEach(tag => {
-            const span = document.createElement('span');
-            span.className = 'badge bg-primary me-1'; // Yeni badge stili
-            span.textContent = tag;
-            tagsContainer.appendChild(span);
+            const tagsContainer = document.getElementById('modalProjectTags');
+            tagsContainer.innerHTML = '';
+            if (projectData.tags && Array.isArray(projectData.tags)) {
+                projectData.tags.forEach(tag => {
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'badge';
+                    tagElement.textContent = tag;
+                    tagsContainer.appendChild(tagElement);
+                });
+            }
+
+            // Buton linklerini ayarla
+            document.getElementById('modalPosterLink').href = projectData.posterUrl || '#';
+            document.getElementById('modalPdfLink').href = projectData.pdfUrl || '#';
         });
+    }
 
-        const modalPosterLink = document.getElementById('modalPosterLink');
-        const modalPdfLink = document.getElementById('modalPdfLink');
+    // Medya Görüntüleyici Modalını Yönet
+    const mediaViewerModalElement = document.getElementById('mediaViewerModal');
+    const mediaViewerIframe = document.getElementById('mediaViewerIframe');
 
-        if (projectData.posterUrl) {
-            modalPosterLink.href = projectData.posterUrl;
-            modalPosterLink.style.display = 'inline-flex';
+    mediaViewerModalElement.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        let mediaUrl = button.getAttribute('data-media-url') || button.getAttribute('href');
+
+        if (mediaUrl && mediaUrl !== '#') {
+            mediaViewerIframe.src = mediaUrl + '#toolbar=0';
         } else {
-            modalPosterLink.style.display = 'none';
+            // Eğer URL yoksa, modalın açılmasını engelle
+            event.preventDefault();
+            console.error('Gösterilecek medya URL\'si bulunamadı.');
         }
+    });
 
-        if (projectData.pdfUrl) {
-            modalPdfLink.href = projectData.pdfUrl;
-            modalPdfLink.style.display = 'inline-flex';
-        } else {
-            modalPdfLink.style.display = 'none';
-        }
-
-        // Medya görüntüleyici butonlarına tıklama olayları
-        document.querySelectorAll('.media-viewer-btn').forEach(btn => {
-            btn.onclick = function(e) {
-                e.preventDefault();
-                document.getElementById('projectDetailsContent').style.display = 'none';
-                document.getElementById('projectMediaContent').style.display = 'block';
-                const mediaUrl = this.href;
-                document.getElementById('modalMediaViewer').src = mediaUrl;
-            };
-        });
-
-        // Detaylara geri dön butonu
-        document.getElementById('backToDetailsBtn').onclick = function() {
-            document.getElementById('projectDetailsContent').style.display = 'flex';
-            document.getElementById('projectMediaContent').style.display = 'none';
-            document.getElementById('modalMediaViewer').src = ''; // iFrame src'sini temizle
-        };
-
+    // Medya görüntüleyici kapandığında iframe'i temizle
+    mediaViewerModalElement.addEventListener('hidden.bs.modal', function () {
+        mediaViewerIframe.src = '';
     });
 
     // --- Projeler için Filtreleme Sistemi ---
     const projectSearchInput = document.getElementById('projectSearchInput');
     const projectCategoryFilter = document.getElementById('projectCategoryFilter');
-    const projectSortFilter = document.getElementById('projectSortFilter'); // Yeni sıralama filtresi
+    const projectSortFilter = document.getElementById('projectSortFilter');
     const resetFiltersBtn = document.getElementById('resetFiltersBtn');
     const activeTagFilterDisplay = document.getElementById('activeTagFilterDisplay');
     const currentFilteredTag = document.getElementById('currentFilteredTag');
     const clearTagFilterBtn = document.getElementById('clearTagFilterBtn');
 
     // Kategorileri doldur
-    const categories = [
-        'Diğer Bilişim Projeleri',
-        'Eğitim',
-        'Oyun-Eğlence',
-        'Sanayi-Endüstri-Ticaret',
-        'Sağlık-Yaşam-Spor',
-        'Sosyal Medya ve İletişim',
-        'Şehir-Çevre-Doğa'
-    ];
+    const categories = ['Diğer Bilişim Projeleri', 'Eğitim', 'Oyun-Eğlence', 'Sanayi-Endüstri-Ticaret', 'Sağlık-Yaşam-Spor', 'Sosyal Medya ve İletişim', 'Şehir-Çevre-Doğa'];
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
@@ -137,74 +115,119 @@ document.addEventListener('DOMContentLoaded', function() {
     // Filtre olay dinleyicileri
     projectSearchInput.addEventListener('input', filterAndRenderProjects);
     projectCategoryFilter.addEventListener('change', filterAndRenderProjects);
-    projectSortFilter.addEventListener('change', filterAndRenderProjects); // Sıralama filtresi dinleyicisi
+    projectSortFilter.addEventListener('change', filterAndRenderProjects);
     resetFiltersBtn.addEventListener('click', () => {
         projectSearchInput.value = '';
         projectCategoryFilter.value = 'all';
-        projectSortFilter.value = 'default'; // Sıralama filtresini sıfırla
-        selectedTagFilter = null; // Etiket filtresini sıfırla
+        projectSortFilter.value = 'default';
+        selectedTagFilter = null;
         filterAndRenderProjects();
     });
 
-    // Etiket filtresini temizleme butonu dinleyicisi
     clearTagFilterBtn.addEventListener('click', () => {
         selectedTagFilter = null;
         filterAndRenderProjects();
     });
 
-    // Tüm projelerle ilk render
-    filterAndRenderProjects();
-
     // Logo ve yazı kısmına tıklanınca Proje Sergisi'ne geçiş
     const goToProjeSergisi = document.getElementById('goToProjeSergisi');
     if (goToProjeSergisi) {
         goToProjeSergisi.style.cursor = 'pointer';
-        goToProjeSergisi.addEventListener('click', function(e) {
+        goToProjeSergisi.addEventListener('click', (e) => {
             e.preventDefault();
-            // Menüde Proje Sergisi butonunu aktif yap
-            const projeBtn = document.querySelector('.menu-btn[data-page="proje-sergisi"]');
-            if (projeBtn) {
-                projeBtn.click();
-            }
+            document.querySelector('.menu-btn[data-page="proje-sergisi"]')?.click();
         });
     }
 
-}); // DOMContentLoaded sonu
+    // Başlangıçta projeleri render et
+    filterAndRenderProjects();
+});
 
-// projects global olarak tanımlı olduğu için doğrudan kullanılabilir
-// import { projects } from './projects.js'; // Bu satırın zaten mevcut ve doğru olduğundan emin olmalıyız
+let selectedTagFilter = null;
+
+function filterByTag(tag) {
+    document.getElementById('projectSearchInput').value = '';
+    document.getElementById('projectCategoryFilter').value = 'all';
+    selectedTagFilter = tag.toLowerCase();
+    filterAndRenderProjects();
+}
+
+function filterAndRenderProjects() {
+    const projectSearchInput = document.getElementById('projectSearchInput');
+    const projectCategoryFilter = document.getElementById('projectCategoryFilter');
+    const projectSortFilter = document.getElementById('projectSortFilter');
+    const activeTagFilterDisplay = document.getElementById('activeTagFilterDisplay');
+    const currentFilteredTag = document.getElementById('currentFilteredTag');
+
+    const searchTerm = projectSearchInput.value.toLowerCase();
+    const selectedCategory = projectCategoryFilter.value;
+    const selectedSort = projectSortFilter.value;
+
+    if (activeTagFilterDisplay) {
+        if (selectedTagFilter) {
+            activeTagFilterDisplay.style.display = 'flex';
+            currentFilteredTag.textContent = selectedTagFilter.charAt(0).toUpperCase() + selectedTagFilter.slice(1);
+        } else {
+            activeTagFilterDisplay.style.display = 'none';
+            currentFilteredTag.textContent = '';
+        }
+    }
+
+    let filteredProjects = projects.filter(project => {
+        const matchesSearchTerm = project.title.toLowerCase().includes(searchTerm) ||
+                                  project.description.toLowerCase().includes(searchTerm) ||
+                                  project.studentName.toLowerCase().includes(searchTerm) ||
+                                  project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+        const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
+        const matchesTag = !selectedTagFilter || project.tags.some(tag => tag.toLowerCase() === selectedTagFilter);
+        return matchesSearchTerm && matchesCategory && matchesTag;
+    });
+
+    if (selectedSort !== 'default') {
+        filteredProjects.sort((a, b) => {
+            let valA, valB;
+            switch (selectedSort) {
+                case 'title-asc': valA = a.title.toLowerCase(); valB = b.title.toLowerCase(); break;
+                case 'title-desc': valA = b.title.toLowerCase(); valB = a.title.toLowerCase(); break;
+                case 'student-asc': valA = a.studentName.toLowerCase(); valB = b.studentName.toLowerCase(); break;
+                case 'student-desc': valA = b.studentName.toLowerCase(); valB = a.studentName.toLowerCase(); break;
+                default: return 0;
+            }
+            if (valA < valB) return -1;
+            if (valA > valB) return 1;
+            return 0;
+        });
+    }
+
+    renderProjects(filteredProjects);
+}
 
 function renderProjects(projectsToRender) {
     const projectCardsContainer = document.querySelector('#proje-sergisi .project-cards-container');
     if (!projectCardsContainer) return;
     projectCardsContainer.innerHTML = '';
-    const categoryColors = {
-        'Web Teknolojileri': 'bg-primary-light',
-        'Analitik': 'bg-success-light',
-        'Yapay Zeka': 'bg-purple-light',
-        'Mobil Uygulama': 'bg-info-light',
-        'Veritabanı': 'bg-warning-light',
-        'Oyun Geliştirme': 'bg-danger-light',
-        'Veri Bilimi': 'bg-teal-light',
-        'Siber Güvenlik': 'bg-orange-light',
-        'IoT': 'bg-indigo-light',
-        'Blockchain': 'bg-cyan-light',
-    };
+
     if (projectsToRender && projectsToRender.length > 0) {
         projectsToRender.forEach(project => {
             const card = document.createElement('div');
             card.className = 'project-card';
             const safeProject = JSON.stringify(project).replace(/'/g, "&apos;");
             card.innerHTML = `
-                <div class="project-card-content">
-                    <h5 class="project-title">${project.title}</h5>
-                    <p class="project-category-on-card badge ${(categoryColors[project.category] || 'bg-secondary-light')} mb-2">${project.category}</p>
-                    <p class="project-student-info">
-                        <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="project-card-student-photo me-2">
-                        <span>${project.studentName}</span>
-                    </p>
+                <div class="card-header d-flex align-items-center">
+                    <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="student-photo me-3">
+                    <div class="student-info">
+                        <div class="student-name">${project.studentName}</div>
+                        <div class="project-category-on-card">${project.category}</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="project-title">${project.title}</div>
                     <p class="project-description">${project.description}</p>
-                    <button class="project-details-btn btn btn-primary mt-2" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detayları Gör</button>
+                </div>
+                <div class="card-footer d-flex justify-content-end gap-2">
+                    <button class="btn btn-sm btn-primary" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detaylar</button>
+                    ${project.posterUrl ? `<button class="btn btn-sm btn-info" data-media-url="${project.posterUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Poster</button>` : ''}
+                    ${project.pdfUrl ? `<button class="btn btn-sm btn-secondary" data-media-url="${project.pdfUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Rapor</button>` : ''}
                 </div>
             `;
             projectCardsContainer.appendChild(card);
@@ -212,75 +235,4 @@ function renderProjects(projectsToRender) {
     } else {
         projectCardsContainer.innerHTML = '<p class="text-center w-100">Filtreleme kriterlerine uygun proje bulunamadı.</p>';
     }
-}
-
-// Etikete göre filtreleme fonksiyonu
-function filterByTag(tag) {
-    projectSearchInput.value = ''; // Arama kutusunu temizle
-    projectCategoryFilter.value = 'all'; // Kategori filtresini sıfırla
-    selectedTagFilter = tag.toLowerCase(); // Seçilen etiketi global değişkene ata
-    filterAndRenderProjects();
-}
-
-// Global değişkeni tanımla
-let selectedTagFilter = null;
-
-function filterAndRenderProjects() {
-    const searchTerm = projectSearchInput.value.toLowerCase();
-    const selectedCategory = projectCategoryFilter.value;
-    const selectedSort = projectSortFilter.value; // Seçilen sıralama değeri
-
-    // Aktif etiket filtresini göster/gizle
-    if (selectedTagFilter) {
-        activeTagFilterDisplay.style.display = 'flex';
-        currentFilteredTag.textContent = selectedTagFilter.charAt(0).toUpperCase() + selectedTagFilter.slice(1); // İlk harfi büyüt
-    } else {
-        activeTagFilterDisplay.style.display = 'none';
-        currentFilteredTag.textContent = '';
-    }
-
-    const filteredProjects = projects.filter(project => {
-        const matchesSearchTerm = project.title.toLowerCase().includes(searchTerm) ||
-                                  project.description.toLowerCase().includes(searchTerm) ||
-                                  project.studentName.toLowerCase().includes(searchTerm) ||
-                                  project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-        const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
-        
-        // Etikete göre filtreleme ekle
-        const matchesTag = selectedTagFilter === null || project.tags.some(tag => tag.toLowerCase() === selectedTagFilter);
-
-        return matchesSearchTerm && matchesCategory && matchesTag;
-    });
-
-    // Sıralama mantığı
-    if (selectedSort !== 'default') {
-        filteredProjects.sort((a, b) => {
-            let valA, valB;
-
-            switch (selectedSort) {
-                case 'title-asc':
-                    valA = a.title.toLowerCase();
-                    valB = b.title.toLowerCase();
-                    break;
-                case 'title-desc':
-                    valA = a.title.toLowerCase();
-                    valB = b.title.toLowerCase();
-                    break;
-                case 'student-asc':
-                    valA = a.studentName.toLowerCase();
-                    valB = b.studentName.toLowerCase();
-                    break;
-                case 'student-desc':
-                    valA = a.studentName.toLowerCase();
-                    valB = b.studentName.toLowerCase();
-                    break;
-            }
-
-            if (valA < valB) return selectedSort.includes('asc') ? -1 : 1;
-            if (valA > valB) return selectedSort.includes('asc') ? 1 : -1;
-            return 0;
-        });
-    }
-
-    renderProjects(filteredProjects);
 }

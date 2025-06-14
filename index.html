@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1.1">
 </head>
 <body>
     <!-- Minimalist Üst Menü (Navbar) -->
@@ -184,10 +184,12 @@
           <div class="modal-body">
             <div id="projectDetailsContent" class="row">
                 <div class="col-md-4 text-center">
-                    <img id="modalProjectPhoto" src="" alt="Proje Fotoğrafı" class="img-fluid rounded mb-4">
+                    <div id="modalMediaContainer" class="mb-4">
+                        <img id="modalProjectPhoto" src="" alt="Proje Fotoğrafı" class="img-fluid rounded">
+                    </div>
                     <div class="student-info-overlay">
                         <img id="modalStudentPhoto" src="" alt="Öğrenci Fotoğrafı" class="img-fluid rounded-circle border border-white border-3" style="width: 160px; height: 160px; object-fit: cover;">
-                        <h4 id="modalStudentName" class="text-dark fw-bold mt-3"></h4>
+                        <h4 id="modalStudentName" class="text-light fw-bold mt-3"></h4>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -200,15 +202,29 @@
                     <div id="modalProjectTags" class="d-flex flex-wrap gap-2"></div>
                     <hr>
                     <div class="d-flex justify-content-start gap-2 mt-4">
-                        <a id="modalPosterLink" href="#" class="btn btn-primary media-viewer-btn" data-type="poster"><i class="bi bi-image"></i> Poster Görüntüle</a>
-                        <a id="modalPdfLink" href="#" class="btn btn-secondary media-viewer-btn" data-type="pdf"><i class="bi bi-file-earmark-pdf"></i> Raporu Görüntüle</a>
+                        <a id="modalPosterLink" href="#" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#mediaViewerModal"><i class="bi bi-image"></i> Poster Görüntüle</a>
+                        <a id="modalPdfLink" href="#" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#mediaViewerModal"><i class="bi bi-file-earmark-pdf"></i> Raporu Görüntüle</a>
                     </div>
                 </div>
             </div>
-            <div id="projectMediaContent" style="display: none; padding-top: 20px;">
-                <button class="btn btn-outline-secondary mb-3" id="backToDetailsBtn"><i class="bi bi-arrow-left"></i> Detaylara Geri Dön</button>
-                <iframe id="modalMediaViewer" style="width: 100%; min-height: 70vh; border: 1px solid #eee; border-radius: 8px;"></iframe>
-            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media Viewer Modal -->
+    <div class="modal fade" id="mediaViewerModal" tabindex="-1" aria-labelledby="mediaViewerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content" style="height: 95vh; background-color: #0a192f; color: #a8b2d1; border: 1px solid rgba(100, 255, 218, 0.2);">
+          <div class="modal-header" style="border-bottom: 1px solid rgba(136, 146, 176, 0.2);">
+            <h5 class="modal-title" id="mediaViewerModalLabel" style="color: #e6f1ff;">Medya Görüntüleyici</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+          </div>
+          <div class="modal-body p-0">
+            <iframe id="mediaViewerIframe" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+          </div>
+           <div class="modal-footer" style="border-top: 1px solid rgba(136, 146, 176, 0.2);">
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Geri Dön</button>
           </div>
         </div>
       </div>
