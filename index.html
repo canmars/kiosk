@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEU Bilgi Kiosk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,6 +16,10 @@
                 <img src="assets/deu-logo.png" alt="DEU Logo" class="logo me-2" style="max-height:48px;">
                 <span class="fw-bold text-primary">DEÜ YBS</span>
             </a>
+            <div class="datetime-info">
+                <span class="date">14.06.2025</span>
+                <span class="time" id="currentTime">00:00:00</span>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -53,7 +58,40 @@
         <div class="row justify-content-center">
             <div class="col-12 main-content">
                 <div id="proje-sergisi" class="content-page active">
-                    <div class="project-cards-container row">
+                    <div class="welcome-container">
+                        <div class="welcome-content">
+                            <h1 class="welcome-title">DEÜ YBS Bitirme Projeleri Sergisi'ne Hoş Geldiniz!</h1>
+                        </div>
+                    </div>
+                    <div class="filter-container">
+                        <div class="search-wrapper">
+                            <input type="text" id="projectSearchInput" class="form-control" placeholder="Proje ara..." aria-label="Proje Ara">
+                        </div>
+                        <div class="category-wrapper">
+                            <select id="projectCategoryFilter" class="form-select" aria-label="Kategori Seç">
+                                <option value="all">Tüm Kategoriler</option>
+                                <!-- Kategoriler buraya dinamik olarak eklenecek -->
+                            </select>
+                        </div>
+                        <div class="sort-wrapper">
+                            <select id="projectSortFilter" class="form-select" aria-label="Sıralama Seç">
+                                <option value="default">Varsayılan Sıralama</option>
+                                <option value="title-asc">Proje Adı (A-Z)</option>
+                                <option value="title-desc">Proje Adı (Z-A)</option>
+                                <option value="student-asc">Öğrenci Adı (A-Z)</option>
+                                <option value="student-desc">Öğrenci Adı (Z-A)</option>
+                            </select>
+                        </div>
+                        <button id="resetFiltersBtn" class="btn">
+                            <i class="bi bi-x-circle"></i>
+                            Filtreleri Temizle
+                        </button>
+                    </div>
+                    <div id="activeTagFilterDisplay" class="active-filter-display mt-3" style="display: none;">
+                        <span class="filter-text">Şu anki filtre: <span id="currentFilteredTag" class="fw-bold"></span></span>
+                        <button id="clearTagFilterBtn" class="btn btn-sm btn-light ms-2"><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="project-cards-container">
                         <!-- Proje kartları buraya dinamik olarak eklenecek -->
                     </div>
                 </div>
@@ -111,96 +149,64 @@
                     </div>
                 </div>
                 <div id="kroki" class="content-page">
-                    <div class="kroki-container">
-                        <img src="assets/kampus-kroki.png" alt="Kampüs Kroki" class="kroki-img">
-                        <div class="kroki-overlay">
-                            <div class="location-info">
-                                <h3>Konum Bilgisi</h3>
-                                <p>Seçilen konum hakkında bilgi burada görüntülenecek.</p>
-                            </div>
+                    <div class="coming-soon-container">
+                        <i class="bi bi-map coming-soon-icon"></i>
+                        <h1 class="coming-soon-title">Kroki</h1>
+                        <p class="coming-soon-text">Kampüs içi navigasyon ve detaylı kroki bilgileri yakında sizlerle...</p>
+                        <div class="coming-soon-progress">
+                            <div class="coming-soon-progress-bar"></div>
                         </div>
                     </div>
                 </div>
                 <div id="duyurular" class="content-page">
-                    <div class="announcements-container">
-                        <div class="announcement-card">
-                            <h3>Önemli Duyuru</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <span class="date">01.03.2024</span>
+                    <div class="coming-soon-container">
+                        <i class="bi bi-megaphone coming-soon-icon"></i>
+                        <h1 class="coming-soon-title">Duyurular</h1>
+                        <p class="coming-soon-text">Önemli duyurular ve güncellemeler çok yakında burada olacak...</p>
+                        <div class="coming-soon-progress">
+                            <div class="coming-soon-progress-bar"></div>
                         </div>
-                        <!-- Daha fazla duyuru kartı eklenebilir -->
                     </div>
                 </div>
                 <div id="afisler" class="content-page">
-                    <div class="posters-container">
-                        <div class="poster-card">
-                            <img src="assets/poster1.png" alt="Afiş 1">
-                            <div class="poster-info">
-                                <h4>MIS Beyond Borders</h4>
-                                <p>🪐 MIS Beyond Borders 2025
-
-                                    DEÜ Yönetim Bilişim Sistemleri Topluluğu, seni 22-23 Mayıs'ta gerçekleşecek olan yılın en kapsamlı YBS etkinliğine davet ediyor!
-                                    
-                                    💡 İki gün sürecek bu zirvede seni neler bekliyor?
-                                    
-                                    ✨ Alanında uzman isimlerle ilham verici konuşmalar
-                                    🛠 Uygulamalı workshoplar
-                                    🤝 Yeni insanlarla tanışabileceğin networking fırsatları
-                                    🎁 Sürpriz çekiliş hediyeleri seni bekliyor!
-                                    
-                                    ✨ Sınırların ötesine çık; bağlantılarını güçlendir, geleceği şekillendir!
-                                    
-                                    📅 1. Gün: Konferans Günü (22 Mayıs Perşembe)
-                                    📍 Yer: İİBF Dr. Ömer Yiğitbaşı Konferans Salonu
-                                    🕘 Saat: 09.00 – 17.00
-                                    
-                                    • 📝 09.00-10.00  Kayıt ve Karşılama
-                                    • 🎤 10.00-10.05  Hoş Geldiniz Konuşması
-                                    • 🎨 10.05-10.50 Gökay Gedik – "Sanatçı Kim? İnsan mı, Yapay Zeka mı?"
-                                    • 📉 11.00-11.45 A. Göktuğ Aydın – "Projeler Neden Başarısız Olur?"
-                                    • 🍽 12.00-13.00  Yemek arası
-                                    • 🚀 13.00-13.50 Yasin Danyal – "Girişimcilikte KOSGEB Yolculuğu"
-                                    • 🧩 14.00-14.45 Ufuk Erdoğmuş – "Çok Yönlü Girişimcilik"
-                                    • 🎓 15.00-16.00 Prof. Dr. Vahap Tecim, Burak Demir, Hakan Akmanoğlu – "YBS'de Kariyer: Mezunlar Anlatıyor"
-                                    • 📊 16.15-17.00 İlhami Demirci – "Veri Kültürü Oluşturma Yolculuğu"
-                                    
-                                    📅 2. Gün: Workshop Günü (23 Mayıs Cuma)
-                                     📍 Yer: İİBF E Blok
-                                     🕚 Saat: 11.00 – 14.30
-                                    🛠 xWorkshoplar*:
-                                     • ☁ 11.00-12.00 Oktay Kiraz – AWS Workshop
-                                     • 🤖 12.30-13.20 Burak Dilber – Makine Öğrenmesi Uygulaması
-                                     • 📱 13.30-14.20 Nilgün Aydın – Dijital Pazarlamanın Gelecekteki Gücü
-                                    
-                                    🎁 Çekilişlerimiz: 
-                                    Etkinliğe katılanlar arasından yapılacak çekilişte:
-                                    • 1 x Powerbank 🔋
-                                    • 1 x Kablosuz Kulaklık 🎧
-                                    • 1 x Klavye-Mouse Seti ⌨🖱
-                                    • 1 x Mouse 🖱
-                                    • 1 x Telefon Standı🔺hediyesi kazanabilirsin!
-                                    
-                                    🎫 Katılım için 6 oturumdan 5'ine katılıp yaka kartına çıkartma toplaman yeterli!.
-                                    
-                                    🟩 Katılım tamamen ücretsizdir.
-                                    
-                                    📌 Kontenjanımız sınırlı, yerini hemen ayırt!
-                                    🟢 Daha detaylı bilgi için Instagram hesabımızı takip etmeyi unutma: https://www.instagram.com/deuybst/
-                                    
-                                    📝 Kayıt olmak için: https://forms.gle/eeU69PGTwCmRp2GS8</p>
-                            </div>
+                    <div class="coming-soon-container">
+                        <i class="bi bi-images coming-soon-icon"></i>
+                        <h1 class="coming-soon-title">Afişler</h1>
+                        <p class="coming-soon-text">Etkinlik afişleri ve görseller yakında burada sergilenecek...</p>
+                        <div class="coming-soon-progress">
+                            <div class="coming-soon-progress-bar"></div>
                         </div>
-                        <!-- Daha fazla afiş kartı eklenebilir -->
                     </div>
                 </div>
                 <div id="kampus-bilgi" class="content-page">
-                    <!-- Kampüs Bilgilendirme içeriği buraya gelecek -->
+                    <div class="coming-soon-container">
+                        <i class="bi bi-building coming-soon-icon"></i>
+                        <h1 class="coming-soon-title">Kampüs Bilgilendirme</h1>
+                        <p class="coming-soon-text">Kampüs hakkında detaylı bilgiler ve rehberlik yakında burada...</p>
+                        <div class="coming-soon-progress">
+                            <div class="coming-soon-progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
                 <div id="geri-bildirim" class="content-page">
-                    <!-- Geri Bildirim / Anket içeriği buraya gelecek -->
+                    <div class="coming-soon-container">
+                        <i class="bi bi-chat-square-text coming-soon-icon"></i>
+                        <h1 class="coming-soon-title">Geri Bildirim / Anket</h1>
+                        <p class="coming-soon-text">Görüşlerinizi paylaşabileceğiniz anketler çok yakında aktif olacak...</p>
+                        <div class="coming-soon-progress">
+                            <div class="coming-soon-progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
                 <div id="mezunlar" class="content-page">
-                    <!-- Mezunlar Köşesi içeriği buraya gelecek -->
+                    <div class="coming-soon-container">
+                        <i class="bi bi-mortarboard coming-soon-icon"></i>
+                        <h1 class="coming-soon-title">Mezunlar Köşesi</h1>
+                        <p class="coming-soon-text">Mezunlarımızın başarı hikayeleri ve deneyimleri yakında burada...</p>
+                        <div class="coming-soon-progress">
+                            <div class="coming-soon-progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -219,31 +225,55 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
           </div>
           <div class="modal-body">
-            <div class="row">
+            <div id="projectDetailsContent" class="row">
                 <div class="col-md-4 text-center">
-                    <img id="modalProjectPhoto" src="" alt="Proje Fotoğrafı" class="img-fluid mb-3 rounded">
-                    <img id="modalStudentPhoto" src="" alt="Öğrenci Fotoğrafı" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
-                    <h6 id="modalStudentName" class="mb-0"></h6>
-                    <p id="modalStudentNumber" class="text-muted"></p>
+                    <img id="modalProjectPhoto" src="" alt="Proje Fotoğrafı" class="img-fluid rounded mb-4">
+                    <div class="student-info-overlay">
+                        <img id="modalStudentPhoto" src="" alt="Öğrenci Fotoğrafı" class="img-fluid rounded-circle border border-white border-3" style="width: 160px; height: 160px; object-fit: cover;">
+                        <h4 id="modalStudentName" class="text-dark fw-bold mt-3"></h4>
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <h2 id="modalProjectTitle"></h2>
                     <p class="lead" id="modalProjectCategory"></p>
                     <hr>
-                    <h4>Açıklama</h4>
+                    <h4>Proje Özeti</h4>
                     <p id="modalProjectDescription"></p>
                     <h5 class="mt-4">Teknolojiler / Anahtar Kelimeler:</h5>
                     <div id="modalProjectTags" class="d-flex flex-wrap gap-2"></div>
                     <hr>
                     <div class="d-flex justify-content-start gap-2 mt-4">
-                        <a id="modalPosterLink" href="#" target="_blank" class="btn btn-primary"><i class="bi bi-image"></i> Poster Görüntüle</a>
-                        <a id="modalPdfLink" href="#" target="_blank" class="btn btn-secondary"><i class="bi bi-file-earmark-pdf"></i> Raporu Görüntüle</a>
+                        <a id="modalPosterLink" href="#" class="btn btn-primary media-viewer-btn" data-type="poster"><i class="bi bi-image"></i> Poster Görüntüle</a>
+                        <a id="modalPdfLink" href="#" class="btn btn-secondary media-viewer-btn" data-type="pdf"><i class="bi bi-file-earmark-pdf"></i> Raporu Görüntüle</a>
                     </div>
                 </div>
+            </div>
+            <div id="projectMediaContent" style="display: none; padding-top: 20px;">
+                <button class="btn btn-outline-secondary mb-3" id="backToDetailsBtn"><i class="bi bi-arrow-left"></i> Detaylara Geri Dön</button>
+                <iframe id="modalMediaViewer" style="width: 100%; min-height: 70vh; border: 1px solid #eee; border-radius: 8px;"></iframe>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script>
+    function updateDateTime() {
+        const now = new Date();
+        const timeElement = document.getElementById('currentTime');
+        
+        // Saat formatını ayarla (HH:MM:SS)
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    // Sayfa yüklendiğinde ve her saniyede bir güncelle
+    document.addEventListener('DOMContentLoaded', () => {
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    });
+    </script>
 </body>
 </html> 

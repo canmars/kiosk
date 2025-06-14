@@ -1,9 +1,13 @@
-body {
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #e3ecfa 0%, #f5f8ff 100%);
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
 }
 
 /* Modern Navbar */
@@ -14,14 +18,83 @@ body {
     border-radius: 0 0 18px 18px;
     padding: 0.7rem 0;
     min-height: 64px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .navbar-brand .logo {
-    max-height: 44px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    background: #fff;
-    padding: 2px;
+    max-height: 48px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand span {
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.datetime-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.datetime-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.datetime-info .date {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2c3e50;
+    padding-right: 1.2rem;
+    border-right: 2px solid #e9ecef;
+    white-space: nowrap;
+}
+
+.datetime-info .time {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0d6efd;
+    font-family: 'Segoe UI', monospace;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Eski ikon stillerini kaldır (daha önceki düzenlemede zaten kaldırılmıştı ama emin olalım) */
+.datetime-info .date::before,
+.datetime-info .time::before {
+    content: none !important;
 }
 
 .navbar-nav .nav-link.menu-btn {
@@ -76,7 +149,8 @@ body {
 
 .main-content {
     padding: 24px 20px 20px 20px;
-    height: 100vh;
+    height: auto;
+    flex-grow: 1;
     overflow-y: auto;
     background: none;
 }
@@ -84,10 +158,11 @@ body {
 .content-page {
     display: none;
     height: 100%;
+    flex-direction: column;
 }
 
 .content-page.active {
-    display: block;
+    display: flex;
     animation: fadeIn 0.5s;
 }
 
@@ -100,248 +175,523 @@ body {
 #proje-sergisi .project-cards-container {
     padding: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+    margin: 0 auto;
+    align-items: stretch;
+    max-width: 100%;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 30px;
+    background-color: #ffffff;
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin: 30px auto 40px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+#projectSearchInput,
+#projectCategoryFilter,
+#projectSortFilter {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 15px;
+    padding: 14px 22px;
+    font-size: 1em;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    flex-grow: 1;
+    max-width: 400px;
+    background-color: #ffffff;
+}
+
+#projectSearchInput:focus,
+#projectCategoryFilter:focus,
+#projectSortFilter:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 4px rgba(13,110,253,0.25);
+    outline: none;
+}
+
+#resetFiltersBtn {
+    background-color: #e9ecef;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #495057;
+    padding: 14px 28px;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#resetFiltersBtn:hover {
+    background-color: #dbe3eb;
+    border-color: rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .project-card {
-    background-color: #fff;
-    border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(160deg, #f0f4f7 0%, #e8edf2 100%);
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     height: 100%;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.08);
+    transform-style: preserve-3d;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+    transform: translateY(-12px) rotateX(2deg);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.25);
 }
 
 .project-card-img {
     width: 100%;
-    height: 220px;
+    height: 260px;
     object-fit: cover;
-    border-bottom: 1px solid #eee;
+    border-radius: 22px 22px 0 0;
+    background-color: #f8f9fa;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.project-card:hover .project-card-img {
+    transform: translateY(-5px);
 }
 
 .project-card-content {
-    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(245,245,250,0.98) 100%);
+    backdrop-filter: blur(8px);
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    border-radius: 0 0 25px 25px;
+    align-items: center;
+    text-align: center;
 }
 
 .project-title {
-    font-size: 1.5em;
-    font-weight: 700;
-    color: #003366;
-    margin-bottom: 0.75rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a2a3a;
+    margin-bottom: 0.8rem;
     line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    order: 1;
+}
+
+.project-card:hover .project-title {
+    color: #2c3e50;
+    text-shadow: none;
 }
 
 .project-student-info {
-    font-size: 0.95em;
-    color: #6c757d;
-    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 1.5rem;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+    order: 2;
+}
+
+.project-card:hover .project-student-info {
+    transform: none;
+}
+
+.project-card-student-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #ffffff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 5px;
+}
+
+.project-card:hover .project-card-student-photo {
+    transform: scale(1.08);
+}
+
+.project-student-info span {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: 700;
+    text-align: center;
 }
 
 .project-description {
-    font-size: 0.9em;
-    color: #555;
+    font-size: 1rem;
+    color: #4a5568;
     flex-grow: 1;
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* En fazla 3 satır göster */
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    order: 4;
+    padding: 0 1rem;
+}
+
+/* Yeni stil: Proje Özeti Başlığı */
+.project-summary-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    order: 3;
 }
 
 .project-tags {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
+    order: 5;
+    margin-top: 0.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 1rem;
 }
 
 .project-tags .badge {
-    background-color: #e9ecef;
-    color: #495057;
-    font-size: 0.75em;
-    padding: 0.4em 0.8em;
-    border-radius: 4px;
-    margin-right: 0.4em;
-    margin-bottom: 0.4em;
-    display: inline-block;
+    background: #e9f2ff !important;
+    color: #004080;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-weight: 500;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-tags .badge:hover {
+    background: #d4e3f5 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    color: #003366;
+}
+
+.project-category-on-card {
+    order: 6;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #a7d9ff 0%, #7ec6ff 100%) !important;
+    color: #054f9a !important;
+    align-self: center;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.project-category-on-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .project-details-btn {
-    margin-top: auto;
-    align-self: flex-start;
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.95em;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    margin-top: 1.5rem;
+    align-self: center;
+    background: linear-gradient(135deg, #0a7aff 0%, #0056b3 100%);
+    border: none;
+    padding: 1rem 2.2rem;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(0,100,255,0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    order: 7;
 }
 
-.project-details-btn:hover {
-    background-color: #0b5ed7;
-    border-color: #0b5ed7;
-    box-shadow: 0 4px 10px rgba(13,110,253,0.3);
+/* KIOSK için özel ayarlar */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .navbar {
+        padding: 1rem 0;
+        min-height: 80px;
+    }
+
+    .navbar-brand {
+        padding: 0.8rem 1.5rem;
+        gap: 1.5rem;
+    }
+
+    .navbar-brand .logo {
+        max-height: 60px;
+    }
+
+    .navbar-brand span {
+        font-size: 1.8rem;
+    }
+
+    .datetime-info {
+        padding: 1.2rem 2rem;
+        gap: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .datetime-info .date {
+        font-size: 1.3rem;
+        padding-right: 1.5rem;
+    }
+
+    .datetime-info .time {
+        font-size: 1.8rem;
+    }
 }
 
 /* Proje Detay Modalı */
+#projectDetailModal .modal-dialog {
+    max-width: 90% !important;
+    height: auto;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
 #projectDetailModal .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
-    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
 #projectDetailModal .modal-header {
-    background-color: #0d6efd;
-    color: white;
-    border-bottom: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
     padding: 1.5rem;
 }
 
 #projectDetailModal .modal-title {
-    font-weight: 700;
     font-size: 1.5em;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
 #projectDetailModal .btn-close {
-    filter: invert(1) brightness(2);
+    filter: none;
     font-size: 1.2em;
+    color: #333;
 }
 
 #projectDetailModal .modal-body {
-    padding: 2.5rem;
+    padding: 2rem;
 }
 
 #modalProjectPhoto {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     width: 100%;
-    max-height: 300px;
-    object-fit: contain;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.student-info-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 #modalStudentPhoto {
-    width: 120px;
-    height: 120px;
-    border: 4px solid #0d6efd;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    width: 160px !important;
+    height: 160px !important;
+    border: 4px solid white !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#modalStudentName {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-top: 1.5rem;
+    font-weight: 600;
 }
 
 #modalProjectTitle {
     font-size: 2em;
     font-weight: 700;
-    color: #003366;
+    color: #2c3e50;
     margin-bottom: 0.5rem;
 }
 
 #modalProjectCategory {
-    font-size: 1.1em;
     color: #6c757d;
+    font-size: 1.1em;
     margin-bottom: 1.5rem;
 }
 
 #modalProjectDescription {
-    text-align: justify;
+    font-size: 1.1em;
     line-height: 1.7;
-    font-size: 1em;
-    color: #333;
+    color: #495057;
+    margin-bottom: 2rem;
 }
 
 #modalProjectTags .badge {
-    background-color: #0d6efd !important;
+    background-color: #f8f9fa !important;
+    color: #495057;
     font-size: 0.9em;
     padding: 0.5em 1em;
-    border-radius: 5px;
-    margin-right: 0.5em;
-    margin-bottom: 0.5em;
+    border-radius: 8px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 #modalPosterLink, #modalPdfLink {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1em;
-    padding: 0.8rem 1.6rem;
+    background-color: #f8f9fa;
+    border: 1px solid rgba(0,0,0,0.1);
+    color: #2c3e50;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+#modalPosterLink:hover, #modalPdfLink:hover {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
+}
+
+#backToDetailsBtn {
+    padding: 12px 25px;
+    font-size: 1.1em;
     border-radius: 10px;
-    font-weight: 600;
+}
+
+#projectMediaContent {
+    display: none;
+    padding-top: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#modalMediaViewer {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    flex-grow: 1;
 }
 
 /* Responsive Tasarım - Proje Sergisi */
-@media (min-width: 1080px) and (min-height: 1920px) {
+@media (max-width: 1400px) {
     #proje-sergisi .project-cards-container {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        padding: 40px;
-        gap: 40px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        padding: 25px;
     }
-
     .project-card {
-        border-radius: 20px;
+        min-height: 400px;
     }
-
+    
     .project-card-img {
-        height: 250px;
+        height: 220px;
     }
-
-    .project-card-content {
-        padding: 2rem;
-    }
-
+    
     .project-title {
-        font-size: 1.7em;
+        font-size: 1.4rem;
     }
+}
 
+@media (max-width: 992px) {
+    #proje-sergisi .project-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+    .project-card {
+        min-height: 380px;
+    }
+    
+    .project-card-img {
+        height: 200px;
+    }
+    
+    .project-card-content {
+        padding: 1.5rem;
+    }
+    
+    .project-title {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #proje-sergisi .project-cards-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+    .project-card {
+        min-height: 360px;
+    }
+    
+    .project-card-img {
+        height: 180px;
+    }
+    
+    .project-card-content {
+        padding: 1.2rem;
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
+    }
+    
     .project-student-info {
-        font-size: 1.1em;
+        padding: 8px 12px;
     }
-
-    .project-description {
-        font-size: 1em;
-    }
-
-    .project-tags .badge {
-        font-size: 0.85em;
-        padding: 0.5em 1em;
-    }
-
-    .project-details-btn {
-        padding: 0.9rem 1.8rem;
-        font-size: 1.1em;
-    }
-
-    #projectDetailModal .modal-header {
-        padding: 2rem;
-    }
-
-    #modalProjectTitle {
-        font-size: 2.5em;
-    }
-
-    #modalProjectCategory {
-        font-size: 1.3em;
-    }
-
-    #modalProjectDescription {
-        font-size: 1.1em;
-    }
-
-    #modalProjectTags .badge {
-        font-size: 1em;
-    }
-
-    #modalPosterLink, #modalPdfLink {
-        font-size: 1.1em;
-        padding: 1rem 2rem;
+    
+    .project-card-student-photo {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -456,38 +806,6 @@ body {
     color: #003366;
     margin-bottom: 10px;
     font-size: 1.08em;
-}
-
-/* Responsive Tasarım */
-@media (max-width: 991px) {
-    .navbar-nav {
-        gap: 0.5rem !important;
-    }
-    .navbar-brand .logo {
-        max-height: 32px;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem 0.7rem;
-    }
-    .navbar-brand span {
-        font-size: 1em;
-    }
-    #proje-sergisi iframe,
-    .kroki-container {
-        height: 55vh;
-    }
-}
-
-.card-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Modern Öğrenci Dostu Ders Programı */
@@ -759,7 +1077,7 @@ body {
 
 /* Ders Programı Stilleri */
 .schedule-container {
-    height: calc(100vh - 100px); /* Navbar yüksekliğini hesaba kat */
+    height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     background: #f8f9fa;
@@ -770,14 +1088,14 @@ body {
 
 .schedule-header {
     background: #fff;
-    padding: 0.75rem 1rem; /* Padding azaltıldı */
+    padding: 0.75rem 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     text-align: center;
     border-bottom: 1px solid #eee;
 }
 
 .current-time {
-    font-size: 1.8rem; /* Küçültüldü */
+    font-size: 1.8rem;
     font-weight: 700;
     color: #0d6efd;
     text-shadow: 0 1px 2px rgba(13,110,253,0.1);
@@ -786,14 +1104,14 @@ body {
 
 .term-selector {
     display: flex;
-    gap: 0.4rem; /* Azaltıldı */
+    gap: 0.4rem;
     background: #f0f4f7;
     padding: 0.2rem;
     border-radius: 6px;
 }
 
 .term-btn {
-    padding: 0.4rem 0.8rem; /* Küçültüldü */
+    padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
     border: none;
     background: transparent;
@@ -811,25 +1129,25 @@ body {
 
 .active-classes-container {
     background: #f8f9fa;
-    border-radius: 0; /* Köşe yuvarlaması kaldırıldı */
-    padding: 0.75rem 1rem; /* Padding azaltıldı */
-    margin: 0; /* Margin kaldırıldı */
-    box-shadow: none; /* Gölge kaldırıldı */
+    border-radius: 0;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    box-shadow: none;
     border-bottom: 1px solid #eee;
 }
 
 .active-classes-title {
-    font-size: 1rem; /* Küçültüldü */
+    font-size: 1rem;
     font-weight: 600;
     color: #495057;
-    margin-bottom: 0.75rem; /* Azaltıldı */
+    margin-bottom: 0.75rem;
     text-align: center;
 }
 
 .active-classes-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem; /* Azaltıldı */
+    gap: 0.75rem;
 }
 
 .active-class-box {
@@ -850,14 +1168,14 @@ body {
 .class-number {
     font-weight: 600;
     color: #0d6efd;
-    margin-bottom: 0.25rem; /* Azaltıldı */
-    font-size: 0.8rem; /* Küçültüldü */
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
 }
 
 .active-course {
-    font-size: 0.75rem; /* Küçültüldü */
+    font-size: 0.75rem;
     color: #6c757d;
-    min-height: 2rem; /* Küçültüldü */
+    min-height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -869,28 +1187,28 @@ body {
 }
 
 .week-info {
-    font-size: 0.8rem; /* Küçültüldü */
+    font-size: 0.8rem;
     color: #6c757d;
     font-weight: 500;
     background: #e9ecef;
-    padding: 0.25rem 0.75rem; /* Küçültüldü */
+    padding: 0.25rem 0.75rem;
     border-radius: 5px;
     display: inline-block;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    margin-top: 0.75rem; /* Azaltıldı */
+    margin-top: 0.75rem;
 }
 
 .class-selector {
     display: flex;
     justify-content: center;
-    gap: 0.5rem; /* Azaltıldı */
-    padding: 0.75rem 1rem; /* Azaltıldı */
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
     background: #fff;
     border-bottom: 1px solid #eee;
 }
 
 .class-btn {
-    padding: 0.5rem 1rem; /* Küçültüldü */
+    padding: 0.5rem 1rem;
     font-size: 0.85rem;
     border: none;
     background: #f8f9fa;
@@ -915,14 +1233,14 @@ body {
 .day-selector {
     display: flex;
     justify-content: center;
-    gap: 0.5rem; /* Azaltıldı */
-    padding: 0.75rem 1rem; /* Azaltıldı */
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
     background: #fff;
     border-bottom: 1px solid #eee;
 }
 
 .day-btn {
-    padding: 0.5rem 1rem; /* Küçültüldü */
+    padding: 0.5rem 1rem;
     font-size: 0.85rem;
     border: none;
     background: #f8f9fa;
@@ -947,10 +1265,10 @@ body {
 .course-cards-container {
     flex: 1;
     overflow-y: auto;
-    padding: 0.75rem; /* Azaltıldı */
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* Azaltıldı */
+    gap: 0.75rem;
 }
 
 .course-card {
@@ -962,8 +1280,8 @@ body {
     position: relative;
     border: 1px solid #e9ecef;
     display: grid;
-    grid-template-columns: 70px 1fr; /* Küçültüldü */
-    gap: 0.75rem; /* Azaltıldı */
+    grid-template-columns: 70px 1fr;
+    gap: 0.75rem;
     align-items: start;
 }
 
@@ -973,10 +1291,10 @@ body {
 }
 
 .course-time {
-    font-size: 1rem; /* Küçültüldü */
+    font-size: 1rem;
     font-weight: 700;
     color: #0d6efd;
-    padding: 0.4rem; /* Küçültüldü */
+    padding: 0.4rem;
     background: #f8f9fa;
     border-radius: 6px;
     text-align: center;
@@ -992,14 +1310,14 @@ body {
 }
 
 .course-name {
-    font-size: 1.1rem; /* Küçültüldü */
+    font-size: 1.1rem;
     font-weight: 700;
     color: #212529;
     margin: 0;
 }
 
 .course-instructor {
-    font-size: 0.85rem; /* Küçültüldü */
+    font-size: 0.85rem;
     color: #495057;
     display: flex;
     align-items: center;
@@ -1012,12 +1330,12 @@ body {
 }
 
 .course-room {
-    font-size: 0.85rem; /* Küçültüldü */
+    font-size: 0.85rem;
     color: #6c757d;
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.25rem 0.6rem; /* Küçültüldü */
+    padding: 0.25rem 0.6rem;
     background: #f0f4f7;
     border-radius: 5px;
     display: inline-flex;
@@ -1044,8 +1362,8 @@ body {
     position: absolute;
     top: 0.75rem;
     left: 0.75rem;
-    font-size: 0.65rem; /* Küçültüldü */
-    padding: 0.2rem 0.4rem; /* Küçültüldü */
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
     border-radius: 3px;
     font-weight: 500;
 }
@@ -1143,5 +1461,438 @@ body {
     .course-status {
         font-size: 0.75rem;
         padding: 0.25rem 0.5rem;
+    }
+}
+
+.active-filter-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin: 15px auto;
+    font-size: 1rem;
+    color: #00509e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    max-width: 400px;
+}
+
+.active-filter-display .filter-text {
+    margin-right: 10px;
+}
+
+.active-filter-display #clearTagFilterBtn {
+    background: none;
+    border: none;
+    color: #00509e;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.active-filter-display #clearTagFilterBtn:hover {
+    color: #ff4d4f;
+}
+
+/* KIOSK için özel ayarlar - Yatay Ekran */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .main-content {
+        padding: 40px 50px;
+    }
+
+    #proje-sergisi .project-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        padding: 40px;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .project-card {
+        width: 723px;
+        height: auto;
+        min-height: 1400px;
+        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        position: relative;
+        overflow: hidden;
+        border-radius: 25px;
+        box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        border: 1px solid rgba(0,0,0,0.08);
+        transform-style: preserve-3d;
+    }
+
+    .project-card:hover {
+        transform: translateY(-12px) rotateX(2deg);
+        box-shadow: 0 25px 55px rgba(0,0,0,0.25);
+    }
+
+    .project-card-img {
+        height: 1024px;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 22px 22px 0 0;
+        background-color: #f8f9fa;
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .project-card:hover .project-card-img {
+        transform: translateY(-5px);
+    }
+
+    .project-card-content {
+        padding: 1.5rem;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(245,245,250,0.98) 100%);
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        border-radius: 0 0 25px 25px;
+    }
+
+    .project-title {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+        font-weight: 800;
+        color: #1a2a3a;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        transition: color 0.3s ease;
+    }
+
+    .project-card:hover .project-title {
+        color: #2c3e50;
+        text-shadow: none;
+    }
+
+    .project-student-info {
+        gap: 10px;
+        margin-bottom: 0.8rem;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-card:hover .project-student-info {
+        transform: translateX(8px);
+    }
+
+    .project-card-student-photo {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #ffffff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .project-card:hover .project-card-student-photo {
+        transform: scale(1.2) rotate(5deg);
+    }
+
+    .project-student-info span {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .project-description {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
+        -webkit-line-clamp: 3;
+        color: #4a5568;
+        flex-grow: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .project-tags {
+        gap: 6px;
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .project-tags .badge {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.9rem;
+        background: linear-gradient(135deg, #e9f2ff 0%, #d4e3f5 100%) !important;
+        color: #336699;
+        border-radius: 10px;
+        font-weight: 500;
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .project-tags .badge:hover {
+        background: linear-gradient(135deg, #d4e3f5 0%, #c1d4eb 100%) !important;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        color: #0d6efd;
+    }
+
+    .project-details-btn {
+        margin-top: 1rem;
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+        align-self: flex-start;
+        background: linear-gradient(135deg, #0a7aff 0%, #0056b3 100%);
+        border: none;
+        border-radius: 15px;
+        font-weight: 700;
+        color: #ffffff;
+        box-shadow: 0 8px 25px rgba(0,100,255,0.3);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Modal düzenlemeleri */
+    #projectDetailModal .modal-dialog {
+        max-width: 900px !important;
+    }
+
+    #modalProjectPhoto {
+        max-height: 500px;
+    }
+
+    #modalStudentPhoto {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    #modalStudentName {
+        font-size: 2rem;
+    }
+
+    #modalProjectTitle {
+        font-size: 2.5rem;
+    }
+
+    #modalProjectDescription {
+        font-size: 1.2rem;
+        line-height: 1.7;
+    }
+
+    #modalProjectTags .badge {
+        font-size: 0.9rem;
+        padding: 0.6em 1.2em;
+    }
+
+    #modalPosterLink, #modalPdfLink {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+}
+
+/* Kiosk için özel arkaplan ayarları */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .project-card::before {
+        background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px, 30px 30px, 30px 30px;
+        opacity: 0.2;
+    }
+    
+    .project-card:hover::before {
+        opacity: 0.4;
+    }
+}
+
+.coming-soon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.coming-soon-icon {
+    font-size: 4rem;
+    color: #0d6efd;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+.coming-soon-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.coming-soon-text {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.coming-soon-progress {
+    width: 200px;
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.coming-soon-progress-bar {
+    height: 100%;
+    background: #0d6efd;
+    width: 30%;
+    animation: progress 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes progress {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+}
+
+/* KIOSK için özel ayarlar */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .coming-soon-container {
+        min-height: 80vh;
+        padding: 3rem;
+    }
+
+    .coming-soon-icon {
+        font-size: 6rem;
+    }
+
+    .coming-soon-title {
+        font-size: 3.5rem;
+    }
+
+    .coming-soon-text {
+        font-size: 1.5rem;
+    }
+
+    .coming-soon-progress {
+        width: 300px;
+        height: 6px;
+    }
+}
+
+.welcome-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px; /* Adjust as needed for vertical centering */
+}
+
+.welcome-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+}
+
+.welcome-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(13,110,253,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(13,110,253,0.05) 0%, transparent 50%);
+    z-index: 0;
+    animation: rotateBackground 20s linear infinite;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    width: 100%;
+}
+
+.welcome-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem; /* Larger font size for emphasis */
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    letter-spacing: 0.5px;
+    text-align: center; /* Center the text */
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.1); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+@keyframes rotateBackground {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* KIOSK için özel ayarlar */
+@media screen and (min-width: 1920px) and (min-height: 1080px) {
+    .welcome-container {
+        padding: 3.5rem;
+        margin-bottom: 3.5rem;
+        min-height: 200px;
+    }
+
+    .welcome-title {
+        font-size: 3.5rem;
     }
 } 
