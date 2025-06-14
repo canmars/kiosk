@@ -225,9 +225,9 @@ function renderProjects(projectsToRender) {
                     <p class="project-description">${project.description}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-end gap-2">
-                    <button class="btn btn-sm btn-primary" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detaylar</button>
-                    ${project.posterUrl ? `<button class="btn btn-sm btn-info" data-media-url="${project.posterUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Poster</button>` : ''}
-                    ${project.pdfUrl ? `<button class="btn btn-sm btn-secondary" data-media-url="${project.pdfUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Rapor</button>` : ''}
+                    <button class="btn btn-sm btn-outline-primary" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detaylar</button>
+                    ${project.posterUrl ? `<button class="btn btn-sm btn-outline-info me-2" data-media-url="${project.posterUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Posteri Gör</button>` : ''}
+                    ${project.pdfUrl ? `<button class="btn btn-sm btn-outline-secondary" data-media-url="${project.pdfUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Raporu Görüntüle</button>` : ''}
                 </div>
             `;
             projectCardsContainer.appendChild(card);
