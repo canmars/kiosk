@@ -204,22 +204,11 @@ function renderProjects(projectsToRender) {
                             <span>${project.studentName}</span>
                         </p>
                         <p class="project-description">${project.description}</p>
-                        <div class="project-tags">
-                            ${project.tags.map(tag => `<span class="badge" data-tag="${tag}">${tag}</span>`).join('')}
-                        </div>
-                        <button class="btn btn-primary project-details-btn" data-bs-toggle="modal" data-bs-target="#projectDetailModal" data-project='${JSON.stringify(project).replace(/'/g, "&apos;")}'>Detayları Gör</button>
+                        <button class="project-details-btn btn btn-primary mt-2" data-project='${JSON.stringify(project)}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detayları Gör</button>
                     </div>
                 </div>
             `;
             projectCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
-        });
-
-        // Etiketlere tıklama olay dinleyicisi ekle
-        projectCardsContainer.querySelectorAll('.project-tags .badge').forEach(tagElement => {
-            tagElement.addEventListener('click', function() {
-                const clickedTag = this.getAttribute('data-tag');
-                filterByTag(clickedTag);
-            });
         });
 
     } else {
