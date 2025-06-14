@@ -41,37 +41,6 @@ app.on('window-all-closed', () => {
   }
 });
 
-// Örnek proje verisi
-const projects = [
-  {
-    proje_adi: "Akıllı Kampüs Yönetim Sistemi",
-    ogrenci: "Ayşe Yılmaz",
-    danisman: "Dr. Vahap Tecim",
-    afis_url: "assets/poster1.png",
-    rapor_url: "assets/rapor1.pdf",
-    poster_url: "assets/poster1.pdf",
-    ozet: "Kampüs içi kaynakların verimli yönetimi için web tabanlı bir platform."
-  },
-  {
-    proje_adi: "Mobil Sağlık Takip Uygulaması",
-    ogrenci: "Mehmet Demir",
-    danisman: "Dr. Burak Demir",
-    afis_url: "assets/poster2.png",
-    rapor_url: "assets/rapor2.pdf",
-    poster_url: "assets/poster2.pdf",
-    ozet: "Kullanıcıların sağlık verilerini takip edebileceği mobil uygulama."
-  },
-  {
-    proje_adi: "Veri Analitiği ile Satış Tahmini",
-    ogrenci: "Zeynep Kaya",
-    danisman: "Dr. Hakan Akmanoğlu",
-    afis_url: "assets/poster3.png",
-    rapor_url: "assets/rapor3.pdf",
-    poster_url: "assets/poster3.pdf",
-    ozet: "Makine öğrenmesi ile satış tahminlemesi yapan analiz platformu."
-  }
-];
-
 function renderProjects() {
   const container = document.querySelector('#proje-sergisi .row');
   if (!container) return;
