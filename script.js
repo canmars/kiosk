@@ -43,7 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     projectDetailModalElement.addEventListener('show.bs.modal', function (event) {
         const button = event.relatedTarget; // Butonu tetikleyen element
-        const projectData = JSON.parse(button.getAttribute('data-project').replace(/&apos;/g, "'"));
+        let projectData = {};
+        try {
+            projectData = JSON.parse(button.getAttribute('data-project').replace(/&apos;/g, "'"));
+        } catch (e) {
+            projectData = {};
+        }
         
         // Modal her açıldığında detayları göster, medya içeriğini gizle
         document.getElementById('projectDetailsContent').style.display = 'flex';
@@ -171,16 +176,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function renderProjects(projectsToRender) {
     const projectCardsContainer = document.querySelector('#proje-sergisi .project-cards-container');
-    if (!projectCardsContainer) return; // Kapsayıcı yoksa çık
-
-    projectCardsContainer.innerHTML = ''; // Mevcut kartları temizle
-
-    // Kategoriye özel renkleri tanımla
+    if (!projectCardsContainer) return;
+    projectCardsContainer.innerHTML = '';
     const categoryColors = {
         'Web Teknolojileri': 'bg-primary-light',
         'Analitik': 'bg-success-light',
         'Yapay Zeka': 'bg-purple-light',
-        // Diğer kategoriler için varsayılan bir renk veya daha fazla renk ekleyebilirsiniz
         'Mobil Uygulama': 'bg-info-light',
         'Veritabanı': 'bg-warning-light',
         'Oyun Geliştirme': 'bg-danger-light',
@@ -189,28 +190,25 @@ function renderProjects(projectsToRender) {
         'IoT': 'bg-indigo-light',
         'Blockchain': 'bg-cyan-light',
     };
-
     if (projectsToRender && projectsToRender.length > 0) {
         projectsToRender.forEach(project => {
-            // Kategoriye özel rengi al, yoksa varsayılanı kullan
-            const categoryClass = categoryColors[project.category] || 'bg-secondary-light';
-            const cardHtml = `
-                <div class="project-card" data-project-id="${project.studentNumber}">
-                    <div class="project-card-content">
-                        <h5 class="project-title">${project.title}</h5>
-                        <p class="project-category-on-card badge ${categoryClass} mb-2">${project.category}</p>
-                        <p class="project-student-info">
-                            <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="project-card-student-photo me-2">
-                            <span>${project.studentName}</span>
-                        </p>
-                        <p class="project-description">${project.description}</p>
-                        <button class="project-details-btn btn btn-primary mt-2" data-project='${JSON.stringify(project)}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detayları Gör</button>
-                    </div>
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            const safeProject = JSON.stringify(project).replace(/'/g, "&apos;");
+            card.innerHTML = `
+                <div class="project-card-content">
+                    <h5 class="project-title">${project.title}</h5>
+                    <p class="project-category-on-card badge ${(categoryColors[project.category] || 'bg-secondary-light')} mb-2">${project.category}</p>
+                    <p class="project-student-info">
+                        <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="project-card-student-photo me-2">
+                        <span>${project.studentName}</span>
+                    </p>
+                    <p class="project-description">${project.description}</p>
+                    <button class="project-details-btn btn btn-primary mt-2" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detayları Gör</button>
                 </div>
             `;
-            projectCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+            projectCardsContainer.appendChild(card);
         });
-
     } else {
         projectCardsContainer.innerHTML = '<p class="text-center w-100">Filtreleme kriterlerine uygun proje bulunamadı.</p>';
     }
