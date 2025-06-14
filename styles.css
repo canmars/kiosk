@@ -2,83 +2,56 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e3ecfa 0%, #f5f8ff 100%);
-    min-height: 100vh;
+    background-color: #f5f5f5;
 }
 
-/* Modern Navbar */
-.navbar {
-    background: linear-gradient(90deg, #f5f8ff 0%, #e3ecfa 100%);
-    border-bottom: none;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-    border-radius: 0 0 18px 18px;
-    padding: 0.7rem 0;
-    min-height: 64px;
+.sidebar {
+    background-color: #003366;
+    height: 100vh;
+    padding: 1px;
+    color: white;
 }
 
-.navbar-brand .logo {
-    max-height: 44px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    background: #fff;
-    padding: 2px;
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.navbar-nav .nav-link.menu-btn {
+.logo {
+    max-width: 150px;
+    height: auto;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-btn {
     background: none;
     border: none;
-    color: #003366;
-    font-size: 1.08em;
-    font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 8px;
-    margin: 0 2px;
-    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
-    outline: none;
-    box-shadow: none;
-    letter-spacing: 0.01em;
-    position: relative;
-    z-index: 1;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
 }
 
-.navbar-nav .nav-link.menu-btn.active,
-.navbar-nav .nav-link.menu-btn:focus {
-    background: linear-gradient(90deg, #e3ecfa 0%, #c9e0ff 100%);
-    color: #00509e;
-    font-weight: 700;
-    box-shadow: 0 2px 12px rgba(0,80,158,0.08);
+.menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.navbar-nav .nav-link.menu-btn:hover {
-    background: #f0f6ff;
-    color: #003366;
-    box-shadow: 0 2px 8px rgba(0,80,158,0.06);
-}
-
-@media (max-width: 991px) {
-    .navbar-nav {
-        gap: 0.5rem !important;
-    }
-    .navbar-brand .logo {
-        max-height: 32px;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem 0.7rem;
-        border-radius: 0 0 10px 10px;
-    }
-    .navbar-brand span {
-        font-size: 1em;
-    }
+.menu-btn.active {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .main-content {
-    padding: 36px 32px 32px 32px;
+    padding: 20px;
     height: 100vh;
     overflow-y: auto;
-    background: none;
 }
 
 .content-page {
@@ -88,165 +61,89 @@ body {
 
 .content-page.active {
     display: block;
-    animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Proje Sergisi Sayfası */
 #proje-sergisi iframe {
     width: 100%;
-    height: 85vh;
+    height: 90vh;
     border: none;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-    background: #fff;
 }
 
 /* Kroki Sayfası */
 .kroki-container {
     position: relative;
-    height: 85vh;
+    height: 90vh;
     overflow: hidden;
-    border-radius: 18px;
-    background: #fff;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
 .kroki-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 18px;
 }
 
 .kroki-overlay {
     position: absolute;
-    top: 24px;
-    right: 24px;
-    background-color: rgba(255, 255, 255, 0.97);
-    padding: 22px 24px;
-    border-radius: 12px;
-    max-width: 320px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.kroki-overlay h3 {
-    color: #003366;
-    margin-bottom: 8px;
-    font-size: 1.2em;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
 }
 
 /* Duyurular Sayfası */
 .announcements-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 28px;
-    padding: 18px 0;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .announcement-card {
-    background-color: #fff;
-    padding: 26px 22px;
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    border-left: 6px solid #003366;
-    transition: box-shadow 0.2s;
-}
-
-.announcement-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .announcement-card h3 {
     color: #003366;
     margin-bottom: 10px;
-    font-size: 1.18em;
 }
 
 .date {
-    color: #888;
-    font-size: 0.97em;
-    margin-top: 8px;
-    display: block;
+    color: #666;
+    font-size: 0.9em;
 }
 
 /* Afişler Sayfası */
 .posters-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
-    padding: 18px 0;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .poster-card {
-    background-color: #fff;
-    border-radius: 14px;
+    background-color: white;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    transition: box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.poster-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .poster-card img {
     width: 100%;
-    height: 260px;
+    height: 300px;
     object-fit: cover;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
 }
 
 .poster-info {
-    padding: 18px 14px 16px 14px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    padding: 15px;
 }
 
 .poster-info h4 {
     color: #003366;
     margin-bottom: 10px;
-    font-size: 1.08em;
-}
-
-/* Responsive Tasarım */
-@media (max-width: 991px) {
-    .navbar-nav {
-        gap: 0.5rem !important;
-    }
-    .navbar-brand .logo {
-        max-height: 32px;
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem 0.7rem;
-    }
-    .navbar-brand span {
-        font-size: 1em;
-    }
-    #proje-sergisi iframe,
-    .kroki-container {
-        height: 55vh;
-    }
-}
-
-.card-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 } 
