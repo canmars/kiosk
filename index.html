@@ -6,6 +6,7 @@
     <title>DEU Bilgi Kiosk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,7 +18,7 @@
                 <span class="fw-bold text-primary">DEÜ YBS</span>
             </a>
             <div class="datetime-info">
-                <span class="date">14.06.2025</span>
+                <span class="date" id="currentDate"></span>
                 <span class="time" id="currentTime">00:00:00</span>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,7 +100,7 @@
                     <div class="schedule-container">
                         <div class="schedule-header">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="current-time" id="currentTime">00:00</div>
+                                <div class="current-time" id="scheduleCurrentTime">00:00</div>
                                 <div class="term-selector">
                                     <button class="term-btn active" data-term="bahar">Bahar Dönemi</button>
                                     <button class="term-btn" data-term="guz">Güz Dönemi</button>
@@ -107,45 +108,23 @@
                             </div>
                             <div class="active-classes-container">
                                 <div class="active-classes-title">Şu Anda Aktif Dersler</div>
-                                <div class="active-classes-grid">
-                                    <div class="active-class-box" data-class="1">
-                                        <div class="class-number">1. Sınıf</div>
-                                        <div class="active-course"></div>
-                                    </div>
-                                    <div class="active-class-box" data-class="2">
-                                        <div class="class-number">2. Sınıf</div>
-                                        <div class="active-course"></div>
-                                    </div>
-                                    <div class="active-class-box" data-class="3">
-                                        <div class="class-number">3. Sınıf</div>
-                                        <div class="active-course"></div>
-                                    </div>
-                                    <div class="active-class-box" data-class="4">
-                                        <div class="class-number">4. Sınıf</div>
-                                        <div class="active-course"></div>
-                                    </div>
+                                <div class="active-class-box" data-class="1">
+                                    <div class="active-course">Ders bulunmamaktadır</div>
+                                </div>
+                                <div class="active-class-box" data-class="2">
+                                    <div class="active-course">Ders bulunmamaktadır</div>
+                                </div>
+                                <div class="active-class-box" data-class="3">
+                                    <div class="active-course">Ders bulunmamaktadır</div>
+                                </div>
+                                <div class="active-class-box" data-class="4">
+                                    <div class="active-course">Ders bulunmamaktadır</div>
                                 </div>
                             </div>
-                            <div class="current-course" id="currentCourse"></div>
-                            <div class="week-info" id="currentWeek">1. Hafta</div>
                         </div>
-                        
-                        <div class="class-selector">
-                            <button class="class-btn active" data-class="1">1. Sınıf</button>
-                            <button class="class-btn" data-class="2">2. Sınıf</button>
-                            <button class="class-btn" data-class="3">3. Sınıf</button>
-                            <button class="class-btn" data-class="4">4. Sınıf</button>
+                        <div class="course-cards-container">
+                            <!-- Ders kartları JavaScript ile doldurulacak -->
                         </div>
-
-                        <div class="day-selector">
-                            <button class="day-btn active" data-day="PAZARTESİ">Pazartesi</button>
-                            <button class="day-btn" data-day="SALI">Salı</button>
-                            <button class="day-btn" data-day="ÇARŞAMBA">Çarşamba</button>
-                            <button class="day-btn" data-day="PERŞEMBE">Perşembe</button>
-                            <button class="day-btn" data-day="CUMA">Cuma</button>
-                        </div>
-
-                        <div class="course-cards-container"></div>
                     </div>
                 </div>
                 <div id="kroki" class="content-page">
@@ -260,6 +239,7 @@
     function updateDateTime() {
         const now = new Date();
         const timeElement = document.getElementById('currentTime');
+        const dateElement = document.getElementById('currentDate');
         
         // Saat formatını ayarla (HH:MM:SS)
         const hours = String(now.getHours()).padStart(2, '0');
@@ -267,6 +247,13 @@
         const seconds = String(now.getSeconds()).padStart(2, '0');
         
         timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+        
+        // Tarih formatını ayarla (DD.MM.YYYY)
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Ay 0'dan başladığı için +1
+        const year = now.getFullYear();
+
+        dateElement.textContent = `${day}.${month}.${year}`;
     }
 
     // Sayfa yüklendiğinde ve her saniyede bir güncelle
@@ -276,4 +263,4 @@
     });
     </script>
 </body>
-</html> 
+</html>
