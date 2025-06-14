@@ -179,14 +179,31 @@ function renderProjects(projectsToRender) {
 
     projectCardsContainer.innerHTML = ''; // Mevcut kartları temizle
 
+    // Kategoriye özel renkleri tanımla
+    const categoryColors = {
+        'Web Teknolojileri': 'bg-primary-light',
+        'Analitik': 'bg-success-light',
+        'Yapay Zeka': 'bg-purple-light',
+        // Diğer kategoriler için varsayılan bir renk veya daha fazla renk ekleyebilirsiniz
+        'Mobil Uygulama': 'bg-info-light',
+        'Veritabanı': 'bg-warning-light',
+        'Oyun Geliştirme': 'bg-danger-light',
+        'Veri Bilimi': 'bg-teal-light',
+        'Siber Güvenlik': 'bg-orange-light',
+        'IoT': 'bg-indigo-light',
+        'Blockchain': 'bg-cyan-light',
+    };
+
     if (projectsToRender && projectsToRender.length > 0) {
         projectsToRender.forEach(project => {
+            // Kategoriye özel rengi al, yoksa varsayılanı kullan
+            const categoryClass = categoryColors[project.category] || 'bg-secondary-light';
             const cardHtml = `
                 <div class="project-card" data-project-id="${project.studentNumber}">
                     <img src="${project.projectPhotoUrl || 'assets/project-placeholder.png'}" alt="Proje Resmi" class="project-card-img">
                     <div class="project-card-content">
                         <h5 class="project-title">${project.title}</h5>
-                        <p class="project-category-on-card badge bg-info text-dark mb-2">${project.category}</p>
+                        <p class="project-category-on-card badge ${categoryClass} mb-2">${project.category}</p>
                         <p class="project-student-info">
                             <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="project-card-student-photo me-2">
                             <span>${project.studentName}</span>
