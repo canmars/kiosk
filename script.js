@@ -31,16 +31,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Otomatik sayfa yenileme (her 5 dakikada bir)
-    setInterval(() => {
-        const activePage = document.querySelector('.content-page.active');
-        if (activePage.id === 'proje-sergisi') {
-            const iframe = activePage.querySelector('iframe');
-            if (iframe) {
-                iframe.src = iframe.src;
-            }
-        }
-    }, 300000); // 5 dakika
+    // Proje Sergisi: Proje kartlarını dinamik olarak oluştur ve modalları yönet
+    const projectCardsContainer = document.querySelector('#proje-sergisi .project-cards-container');
+    const projectDetailModal = new bootstrap.Modal(document.getElementById('projectDetailModal'));
+
+    if (typeof projects !== 'undefined' && projects.length > 0) {
+        projects.forEach(project => {
+            const cardHtml = `
+                <div class="col-md-4 mb-4">
+                    <div class="card project-card" data-project-id="${project.studentNumber}">
+                        <img src="${project.projectPhotoUrl || 'assets/project-placeholder.png'}" class="card-img-top" alt="Proje Resmi">
+                        <div class="card-body">
+                            <h5 class="card-title">${project.title}</h5>
+                            <p class="card-text">${project.studentName} (${project.studentNumber})</p>
+                            <button class="btn btn-sm btn-primary view-details-btn" data-bs-toggle="modal" data-bs-target="#projectDetailModal" data-project='${JSON.stringify(project).replace(/'/g, "&apos;")}'>Detayları Gör</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            projectCardsContainer.insertAdjacentHTML('beforeend', cardHtml);
+        });
+
+        // Detayları Gör butonlarına click listener ekle
+        document.querySelectorAll('.view-details-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const projectData = JSON.parse(this.getAttribute('data-project').replace(/&apos;/g, "'"));
+                
+                document.getElementById('modalProjectTitle').textContent = projectData.title;
+                document.getElementById('modalProjectCategory').textContent = projectData.category;
+                document.getElementById('modalProjectDescription').textContent = projectData.description.replace(/\\n/g, '<br>');
+                document.getElementById('modalStudentName').textContent = projectData.studentName;
+                document.getElementById('modalStudentNumber').textContent = projectData.studentNumber;
+                document.getElementById('modalProjectPhoto').src = projectData.projectPhotoUrl || 'assets/project-placeholder.png';
+                document.getElementById('modalStudentPhoto').src = projectData.studentPhotoUrl || 'assets/student-placeholder.png';
+                
+                const tagsContainer = document.getElementById('modalProjectTags');
+                tagsContainer.innerHTML = ''; // Önceki etiketleri temizle
+                projectData.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'badge bg-secondary';
+                    span.textContent = tag;
+                    tagsContainer.appendChild(span);
+                });
+
+                document.getElementById('modalPosterLink').href = projectData.posterUrl || '#';
+                document.getElementById('modalPdfLink').href = projectData.pdfUrl || '#';
+
+                projectDetailModal.show();
+            });
+        });
+    } else {
+        projectCardsContainer.innerHTML = '<p class="text-center w-100">Proje verileri yüklenemedi veya bulunamadı.</p>';
+    }
 });
 
 // Ders Programı Fonksiyonları

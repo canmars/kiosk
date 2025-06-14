@@ -416,4 +416,108 @@ body {
         font-size: 0.93rem;
         padding: 0.25rem 0.7rem;
     }
+}
+
+/* Proje Sergisi Sayfası */
+#proje-sergisi .project-cards-container {
+    padding: 20px;
+}
+
+.project-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    height: 100%; /* Tüm kartların aynı yüksekliğe sahip olmasını sağlar */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px; /* Görsel yüksekliğini sabitle */
+    object-fit: cover; /* Görseli kaplayacak şekilde boyutlandır */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.project-card .card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-card .card-title {
+    color: #003366;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.project-card .card-text {
+    font-size: 0.9em;
+    color: #555;
+    flex-grow: 1; /* Metnin kart içinde yayılmasını sağlar */
+}
+
+.project-card .btn {
+    margin-top: 10px;
+}
+
+/* Proje Detay Modalı */
+#projectDetailModal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#projectDetailModal .modal-header {
+    background-color: #003366;
+    color: white;
+    border-bottom: none;
+}
+
+#projectDetailModal .modal-title {
+    font-weight: bold;
+}
+
+#projectDetailModal .btn-close {
+    filter: invert(1) brightness(2);
+}
+
+#projectDetailModal .modal-body {
+    padding: 30px;
+}
+
+#modalProjectPhoto {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+}
+
+#modalStudentPhoto {
+    border: 2px solid #003366;
+}
+
+#modalProjectDescription {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+#modalProjectTags .badge {
+    background-color: #6c757d !important;
+    font-size: 0.9em;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+#modalPosterLink, #modalPdfLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.95em;
 } 

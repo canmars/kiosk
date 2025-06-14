@@ -1,4 +1,4 @@
-const projects = [
+[
   {
     "title": "SütNet",
     "studentName": "Emre Akfırtına",
@@ -1833,7 +1833,7 @@ const projects = [
     "title": "Yapay Zeka ile Dijital Pazarlama",
     "studentName": "Bahadır Özcanlı",
     "studentNumber": "2018469072",
-    "description": "Bu proje, dijital danışmanların pazarlama süreçlerinde karşılaştığı içerik üretimi ve veri analizi gibi tekrarlayan ve zaman alıcı görevleri otomatikleştirmek amacıyla geliştirilmiş yapay zeka destekli bir dijital pazarlama otomasyon platformudur. Platform, pazarlama profesyonellerine stratejik karar süreçlerinde yardımcı olmak, içerik üretim süresini kısaltmak ve kampanya performanslarını daha verimli analiz edebilmelerini sağlamak amacıyla tasarlanmıştır.\n\nProjenin Amacı\nProjenin temel amacı, yapay zeka teknolojilerini kullanarak dijital danışmanların reklam metni yazımı, e-posta içeriği oluşturma, hedef kitle analizi ve kampanya raporlama gibi temel pazarlama faaliyetlerini daha hızlı, tutarlı ve verimli biçimde gerçekleştirebileceği bir sistem geliştirmektir.\n\nSistemin Temel Özellikleri\nGeliştirilen sistem dört ana modülden oluşmaktadır:\n\nHedef Kitle Analizi: Kullanıcıdan alınan bilgiler doğrultusunda yapay zeka tarafından detaylı ve bağlama duyarlı hedef kitle profilleri oluşturulur.\n\nReklam Metni Üretimi: Google, Meta, LinkedIn ve X (eski adıyla Twitter) gibi platformlara özel, etkili reklam başlıkları ve açıklamaları otomatik olarak oluşturulur.\n\nE-Posta Oluşturucu: Kampanya amacına ve hedef kitleye uygun, profesyonel görünümlü pazarlama e-postaları oluşturulur ve düzenlenebilir.\n\nPerformans Raporlama: Kampanya verileri interaktif grafiklerle görselleştirilir ve yapay zeka desteğiyle yorumlanmış rapor özetleri sunulur.\n\nKullanılan Teknolojiler\nBackend: Python ve Django ile geliştirilen sistem, güvenli ve ölçeklenebilir bir altyapıya sahiptir. Django REST Framework ile frontend entegrasyonu sağlanmıştır.\n\nFrontend: HTML5, CSS3 ve Bootstrap 5 ile duyarlı ve kullanıcı dostu bir arayüz oluşturulmuştur. JavaScript (ES6) ve AJAX ile dinamik kullanıcı etkileşimleri sağlanmıştır.\n\nYapay Zeka Entegrasyonu: OpenAI GPT modeli, ChatGPT API üzerinden entegre edilerek içerik üretimi, özetleme ve analiz işlevleri gerçekleştirilmiştir.\n\nGörselleştirme: Plotly.js kütüphanesi ile KPI’lar ve kampanya performansı grafiksel olarak sunulmuştur.\n\nMetin Düzenleme: Trix Editor ile kullanıcılar metinleri zengin içerikli biçimde düzenleyebilmektedir.\n\n",
+    "description": "Bu proje, dijital danışmanların pazarlama süreçlerinde karşılaştığı içerik üretimi ve veri analizi gibi tekrarlayan ve zaman alıcı görevleri otomatikleştirmek amacıyla geliştirilmiş yapay zeka destekli bir dijital pazarlama otomasyon platformudur. Platform, pazarlama profesyonellerine stratejik karar süreçlerinde yardımcı olmak, içerik üretim süresini kısaltmak ve kampanya performanslarını daha verimli analiz edebilmelerini sağlamak amacıyla tasarlanmıştır.\n\nProjenin Amacı\nProjenin temel amacı, yapay zeka teknolojilerini kullanarak dijital danışmanların reklam metni yazımı, e-posta içeriği oluşturma, hedef kitle analizi ve kampanya raporlama gibi temel pazarlama faaliyetlerini daha hızlı, tutarlı ve verimli biçimde gerçekleştirebileceği bir sistem geliştirmektir.\n\nSistemin Temel Özellikleri\nGeliştirilen sistem dört ana modülden oluşmaktadır:\n\nHedef Kitle Analizi: Kullanıcıdan alınan bilgiler doğrultusunda yapay zeka tarafından detaylı ve bağlama duyarlı hedef kitle profilleri oluşturulur.\n\nReklam Metni Üretimi: Google, Meta, LinkedIn ve X (eski adıyla Twitter) gibi platformlara özel, etkili reklam başlıkları ve açıklamaları otomatik olarak oluşturulur.\n\nE-Posta Oluşturucu: Kampanya amacına ve hedef kitleye uygun, profesyonel görünümlü pazarlama e-postaları oluşturulur ve düzenlenebilir.\n\nPerformans Raporlama: Kampanya verileri interaktif grafiklerle görselleştirilir ve yapay zeka desteğiyle yorumlanmış rapor özetleri sunulur.\n\nKullanılan Teknolojiler\nBackend: Python ve Django ile geliştirilen sistem, güvenli ve ölçeklenebilir bir altyapıya sahiptir. Django REST Framework ile frontend entegrasyonu sağlanmıştır.\n\nFrontend: HTML5, CSS3 ve Bootstrap 5 ile duyarlı ve kullanıcı dostu bir arayüz oluşturulmuştur. JavaScript (ES6) ve AJAX ile dinamik kullanıcı etkileşimleri sağlanmıştır.\n\nYapay Zeka Entegrasyonu: OpenAI GPT modeli, ChatGPT API üzerinden entegre edilerek içerik üretimi, özetleme ve analiz işlevleri gerçekleştirilmiştir.\n\nGörselleştirme: Plotly.js kütüphanesi ile KPI’lar ve kampanya performansı grafiksel olarak sunulmuştur.\n\nMetin Düzenleme: Trix Editor ile kullanıcılar metinleri zengin içerikli biçimde düzenleyebilmektedir.\n\nKimler İçin Uygun?\nBu platform, dijital pazarlama danışmanları, freelance içerik üreticileri, sosyal medya yöneticileri ve küçük ekiplerle çalışan ajanslar için idealdir. Teknik bilgi gerektirmeden, yapay zekanın gücünü kullanarak kampanya planlamasını ve içerik üretimini hızlandırmak isteyen tüm profesyonellere hitap eder.\n\nGelecek Geliştirmeler\nProje, gelecekte reklamların doğrudan yayınlanmasını sağlayacak API entegrasyonları (örneğin Google Ads ve Meta Ads API) ve kampanya performansına göre metinleri otomatik olarak optimize eden geri besleme sistemleri ile geliştirilmeye açıktır. Ayrıca, kişiselleştirilmiş marka dili öğrenebilen kullanıcıya özel yapay zeka modelleriyle sistem daha güçlü hale getirilebilir.",
     "category": "Web Teknolojileri",
     "technologies": [
       "analiz",
@@ -1879,52 +1879,4 @@ const projects = [
       "site"
     ]
   }
-];
-
-function renderProjects() {
-  const container = document.querySelector('#proje-sergisi .row');
-  if (!container) return;
-  container.innerHTML = '';
-  projects.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
-    card.innerHTML = `
-      <div class="card project-card h-100 shadow-sm">
-        <img src="${p.photoUrl || ''}" class="card-img-top" alt="${p.title || 'Proje'}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-bold text-primary">${p.title || 'İsimsiz Proje'}</h5>
-          <div class="mb-2 small text-secondary">Öğrenci: <span class="fw-semibold">${p.studentName || ''}</span></div>
-          <div class="mb-2 small text-secondary">Numara: <span class="fw-semibold">${p.studentNumber || ''}</span></div>
-          <p class="card-text flex-grow-1">${p.description || ''}</p>
-          <div class="mt-2 d-flex gap-2">
-            <button class="btn btn-outline-primary btn-sm" onclick="showModal(${i}, 'rapor')">Raporu Görüntüle</button>
-            <button class="btn btn-outline-secondary btn-sm" onclick="showModal(${i}, 'poster')">Posteri Görüntüle</button>
-            <button class="btn btn-link btn-sm text-info" onclick="showModal(${i}, 'detay')">Detaylar</button>
-          </div>
-        </div>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-window.showModal = function(idx, type) {
-  const p = projects[idx];
-  const modal = document.getElementById('projectModal');
-  const modalTitle = modal.querySelector('.modal-title');
-  const modalBody = modal.querySelector('.modal-body');
-  if (type === 'detay') {
-    modalTitle.textContent = p.title || 'Proje Detayı';
-    modalBody.innerHTML = `<strong>Öğrenci:</strong> ${p.studentName || ''} (${p.studentNumber || ''})<br><br><strong>Açıklama:</strong><br>${p.description || ''}`;
-  } else if (type === 'rapor') {
-    modalTitle.textContent = (p.title || '') + ' - Rapor';
-    modalBody.innerHTML = `<embed src="${p.pdfUrl || ''}" type="application/pdf" width="100%" height="500px" />`;
-  } else if (type === 'poster') {
-    modalTitle.textContent = (p.title || '') + ' - Poster';
-    modalBody.innerHTML = `<embed src="${p.posterUrl || ''}" type="application/pdf" width="100%" height="500px" />`;
-  }
-  const modalInstance = new bootstrap.Modal(modal);
-  modalInstance.show();
-}
-
-document.addEventListener('DOMContentLoaded', renderProjects); 
+]

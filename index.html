@@ -53,35 +53,8 @@
         <div class="row justify-content-center">
             <div class="col-12 main-content">
                 <div id="proje-sergisi" class="content-page active">
-                    <div class="project-explorer py-3">
-                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 gap-3">
-                            <h2 class="fw-bold mb-0 text-primary">Bitirme Projeleri Sergisi</h2>
-                            <div class="d-flex gap-2">
-                                <input type="text" class="form-control" placeholder="Proje veya öğrenci ara..." style="min-width:220px;">
-                                <select class="form-select" style="min-width:160px;">
-                                    <option>Tümü</option>
-                                    <option>Web Uygulamaları</option>
-                                    <option>Mobil Uygulamalar</option>
-                                    <option>Veri Analitiği</option>
-                                    <option>Diğer</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row g-4"><!-- Proje kartları JS ile buraya eklenecek --></div>
-                        <div class="text-center mt-4 text-muted small">Toplam 103 proje listelenecek. (Şu anda örnek 3 proje gösteriliyor.)</div>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="projectModalLabel"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                          </div>
-                        </div>
-                      </div>
+                    <div class="project-cards-container row">
+                        <!-- Proje kartları buraya dinamik olarak eklenecek -->
                     </div>
                 </div>
                 <div id="ders-programi" class="content-page">
@@ -217,8 +190,43 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
     <script src="projects.js"></script>
-    <script src="schedule.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Proje Detay Modalı -->
+    <div class="modal fade" id="projectDetailModal" tabindex="-1" aria-labelledby="projectDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectDetailModalLabel">Proje Detayları</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img id="modalProjectPhoto" src="" alt="Proje Fotoğrafı" class="img-fluid mb-3 rounded">
+                    <img id="modalStudentPhoto" src="" alt="Öğrenci Fotoğrafı" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover;">
+                    <h6 id="modalStudentName" class="mb-0"></h6>
+                    <p id="modalStudentNumber" class="text-muted"></p>
+                </div>
+                <div class="col-md-8">
+                    <h2 id="modalProjectTitle"></h2>
+                    <p class="lead" id="modalProjectCategory"></p>
+                    <hr>
+                    <h4>Açıklama</h4>
+                    <p id="modalProjectDescription"></p>
+                    <h5 class="mt-4">Teknolojiler / Anahtar Kelimeler:</h5>
+                    <div id="modalProjectTags" class="d-flex flex-wrap gap-2"></div>
+                    <hr>
+                    <div class="d-flex justify-content-start gap-2 mt-4">
+                        <a id="modalPosterLink" href="#" target="_blank" class="btn btn-primary"><i class="bi bi-image"></i> Poster Görüntüle</a>
+                        <a id="modalPdfLink" href="#" target="_blank" class="btn btn-secondary"><i class="bi bi-file-earmark-pdf"></i> Raporu Görüntüle</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html> 
