@@ -142,32 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tüm projelerle ilk render
     filterAndRenderProjects();
 
-    function updateDateTime() {
-        const now = new Date();
-        const dateElement = document.querySelector('.datetime-info .date');
-        const timeElement = document.getElementById('currentTime');
-        
-        // Tarih formatını ayarla (GG.AA.YYYY)
-        const day = String(now.getDate()).padStart(2, '0');
-        const month = String(now.getMonth() + 1).padStart(2, '0'); // Ay 0-11 arası olduğu için +1
-        const year = now.getFullYear();
-        
-        dateElement.textContent = `TARİH: ${day}.${month}.${year}`;
-
-        // Saat formatını ayarla (HH:MM:SS)
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        timeElement.textContent = `SAAT: ${hours}:${minutes}:${seconds}`;
-    }
-
-    // Sayfa yüklendiğinde ve her saniyede bir güncelle
-    document.addEventListener('DOMContentLoaded', () => {
-        updateDateTime();
-        setInterval(updateDateTime, 1000);
-    });
-
 }); // DOMContentLoaded sonu
 
 // projects global olarak tanımlı olduğu için doğrudan kullanılabilir
@@ -301,4 +275,4 @@ function filterAndRenderProjects() {
     }
 
     renderProjects(filteredProjects);
-} 
+}

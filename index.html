@@ -14,13 +14,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="assets/deu-logo.png" alt="DEU Logo" class="logo me-2" style="max-height:48px;">
-                <span class="fw-bold text-primary">DEÜ YBS</span>
+                <img src="assets/deu-logo.png" alt="DEU Logo" class="logo custom-logo-size me-1">
+                <span class="custom-navbar-title">
+                    <span class="uni-name">Dokuz Eylül Üniversitesi</span>
+                    <span class="dept-name">Yönetim Bilişim Sistemleri Bölümü</span>
+                </span>
             </a>
-            <div class="datetime-info">
-                <span class="date" id="currentDate"></span>
-                <span class="time" id="currentTime">00:00:00</span>
-            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -235,32 +234,5 @@
         </div>
       </div>
     </div>
-    <script>
-    function updateDateTime() {
-        const now = new Date();
-        const timeElement = document.getElementById('currentTime');
-        const dateElement = document.getElementById('currentDate');
-        
-        // Saat formatını ayarla (HH:MM:SS)
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-        
-        // Tarih formatını ayarla (DD.MM.YYYY)
-        const day = String(now.getDate()).padStart(2, '0');
-        const month = String(now.getMonth() + 1).padStart(2, '0'); // Ay 0'dan başladığı için +1
-        const year = now.getFullYear();
-
-        dateElement.textContent = `${day}.${month}.${year}`;
-    }
-
-    // Sayfa yüklendiğinde ve her saniyede bir güncelle
-    document.addEventListener('DOMContentLoaded', () => {
-        updateDateTime();
-        setInterval(updateDateTime, 1000);
-    });
-    </script>
 </body>
 </html>

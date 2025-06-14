@@ -10,6 +10,60 @@ html, body {
     text-orientation: mixed !important;
 }
 
+/* --- NAVBAR LOGO & YAZI DÜZENİ --- */
+.custom-navbar-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    line-height: 1.05;
+}
+.custom-navbar-title .uni-name {
+    font-weight: 900;
+    color: #1976f3;
+    font-size: 1.3em;
+    font-family: 'Segoe UI', 'Arial', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.1;
+}
+.custom-navbar-title .dept-name {
+    font-weight: 400;
+    color: #004080;
+    font-size: 1em;
+    font-family: 'Segoe UI', 'Arial', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.1;
+}
+.logo.custom-logo-size {
+    max-height: 110px !important;
+    width: auto;
+    margin-right: 4px !important;
+}
+.navbar-brand {
+    gap: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0;
+}
+
+/* Varsayılan span stilini etkisizleştir */
+.navbar-brand span {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: unset;
+    font-size: unset;
+    font-weight: unset;
+    letter-spacing: unset;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /* Modern Navbar */
 .navbar {
     background: linear-gradient(90deg, #f5f8ff 0%, #e3ecfa 100%);
@@ -27,12 +81,10 @@ html, body {
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
+    gap: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0;
 }
 
 .navbar-brand:hover {
@@ -41,14 +93,20 @@ html, body {
 }
 
 .navbar-brand .logo {
-    max-height: 48px;
+    max-height: 100px !important;
+    width: auto;
+    margin-right: 2px !important;
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .navbar-brand span {
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    gap: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
     -webkit-background-clip: text;
     background-clip: text;
