@@ -113,8 +113,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearTagFilterBtn = document.getElementById('clearTagFilterBtn');
 
     // Kategorileri doldur
-    const categories = [...new Set(projects.map(project => project.category))];
-    categories.sort().forEach(category => {
+    const categories = [
+        'Diğer Bilişim Projeleri',
+        'Eğitim',
+        'Oyun-Eğlence',
+        'Sanayi-Endüstri-Ticaret',
+        'Sağlık-Yaşam-Spor',
+        'Sosyal Medya ve İletişim',
+        'Şehir-Çevre-Doğa'
+    ];
+    categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
         option.textContent = category;

@@ -29,7 +29,7 @@ const projects = [
     "studentName": "Ata AVCI",
     "studentNumber": "2019469117",
     "description": "\n\nFleet Optima: Akıllı Denizcilikte Karbon Yönetimi\nYakıt Verimliliği ve FuelEU Uyum\nFleet Optima, yakıt tüketimini analiz ederek gemi\nperformansını artırır. FuelEU sürecine uyum sağlar ve\nçevreci yakıt geçişini destekler. Anlık tüketim ve\nemisyon takibiyle stratejik karar desteği sunar.\nCII Takibi\nGeminin hız, rota ve yakıt tüketimi bilgilerine dayalı\nolarak oluşturulan karar tabloları ile A-B-C seviyelerini\nkorumaya yönelik optimizasyon önerileri yapılır.\nSistem, tanımlı eşik değerlerin aşılması durumunda\nkullanıcıyı düşük not riski konusunda uyarır.\nAB ETS ve Karbon Maliyeti\n•Fleet Optima, AB Emisyon Ticaret Sistemi (EU ETS)\nkapsamında karbon emisyonlarını ve buna bağlı\nmaliyetleri hesaplar. Sefer verileri, yakıt türleri ve\nliman bölgeleri analiz edilerek raporlanır",
-    "category": "Analitik",
+    "category": "Sanayi-Endüstri-Ticaret",
     "technologies": [
       "veri",
       "analiz"
