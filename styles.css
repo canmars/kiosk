@@ -97,13 +97,252 @@ body {
 }
 
 /* Proje Sergisi Sayfası */
-#proje-sergisi iframe {
-    width: 100%;
-    height: 85vh;
-    border: none;
+#proje-sergisi .project-cards-container {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: #fff;
     border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+}
+
+.project-card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.project-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.project-student-info {
+    font-size: 0.95em;
+    color: #6c757d;
+    margin-bottom: 0.75rem;
+}
+
+.project-description {
+    font-size: 0.9em;
+    color: #555;
+    flex-grow: 1;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* En fazla 3 satır göster */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-tags {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-tags .badge {
+    background-color: #e9ecef;
+    color: #495057;
+    font-size: 0.75em;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    margin-right: 0.4em;
+    margin-bottom: 0.4em;
+    display: inline-block;
+}
+
+.project-details-btn {
+    margin-top: auto;
+    align-self: flex-start;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95em;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.project-details-btn:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+    box-shadow: 0 4px 10px rgba(13,110,253,0.3);
+}
+
+/* Proje Detay Modalı */
+#projectDetailModal .modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#projectDetailModal .modal-header {
+    background-color: #0d6efd;
+    color: white;
+    border-bottom: none;
+    padding: 1.5rem;
+}
+
+#projectDetailModal .modal-title {
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+#projectDetailModal .btn-close {
+    filter: invert(1) brightness(2);
+    font-size: 1.2em;
+}
+
+#projectDetailModal .modal-body {
+    padding: 2.5rem;
+}
+
+#modalProjectPhoto {
+    width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#modalStudentPhoto {
+    width: 120px;
+    height: 120px;
+    border: 4px solid #0d6efd;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#modalProjectTitle {
+    font-size: 2em;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 0.5rem;
+}
+
+#modalProjectCategory {
+    font-size: 1.1em;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+#modalProjectDescription {
+    text-align: justify;
+    line-height: 1.7;
+    font-size: 1em;
+    color: #333;
+}
+
+#modalProjectTags .badge {
+    background-color: #0d6efd !important;
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#modalPosterLink, #modalPdfLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1em;
+    padding: 0.8rem 1.6rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Responsive Tasarım - Proje Sergisi */
+@media (min-width: 1080px) and (min-height: 1920px) {
+    #proje-sergisi .project-cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        padding: 40px;
+        gap: 40px;
+    }
+
+    .project-card {
+        border-radius: 20px;
+    }
+
+    .project-card-img {
+        height: 250px;
+    }
+
+    .project-card-content {
+        padding: 2rem;
+    }
+
+    .project-title {
+        font-size: 1.7em;
+    }
+
+    .project-student-info {
+        font-size: 1.1em;
+    }
+
+    .project-description {
+        font-size: 1em;
+    }
+
+    .project-tags .badge {
+        font-size: 0.85em;
+        padding: 0.5em 1em;
+    }
+
+    .project-details-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1.1em;
+    }
+
+    #projectDetailModal .modal-header {
+        padding: 2rem;
+    }
+
+    #modalProjectTitle {
+        font-size: 2.5em;
+    }
+
+    #modalProjectCategory {
+        font-size: 1.3em;
+    }
+
+    #modalProjectDescription {
+        font-size: 1.1em;
+    }
+
+    #modalProjectTags .badge {
+        font-size: 1em;
+    }
+
+    #modalPosterLink, #modalPdfLink {
+        font-size: 1.1em;
+        padding: 1rem 2rem;
+    }
 }
 
 /* Kroki Sayfası */
@@ -516,110 +755,6 @@ body {
         font-size: 0.93rem;
         padding: 0.25rem 0.7rem;
     }
-}
-
-/* Proje Sergisi Sayfası */
-#proje-sergisi .project-cards-container {
-    padding: 20px;
-}
-
-.project-card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-    height: 100%; /* Tüm kartların aynı yüksekliğe sahip olmasını sağlar */
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-.project-card img {
-    width: 100%;
-    height: 200px; /* Görsel yüksekliğini sabitle */
-    object-fit: cover; /* Görseli kaplayacak şekilde boyutlandır */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.project-card .card-body {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.project-card .card-title {
-    color: #003366;
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 5px;
-}
-
-.project-card .card-text {
-    font-size: 0.9em;
-    color: #555;
-    flex-grow: 1; /* Metnin kart içinde yayılmasını sağlar */
-}
-
-.project-card .btn {
-    margin-top: 10px;
-}
-
-/* Proje Detay Modalı */
-#projectDetailModal .modal-content {
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-#projectDetailModal .modal-header {
-    background-color: #003366;
-    color: white;
-    border-bottom: none;
-}
-
-#projectDetailModal .modal-title {
-    font-weight: bold;
-}
-
-#projectDetailModal .btn-close {
-    filter: invert(1) brightness(2);
-}
-
-#projectDetailModal .modal-body {
-    padding: 30px;
-}
-
-#modalProjectPhoto {
-    width: 100%;
-    max-height: 250px;
-    object-fit: contain;
-}
-
-#modalStudentPhoto {
-    border: 2px solid #003366;
-}
-
-#modalProjectDescription {
-    text-align: justify;
-    line-height: 1.6;
-}
-
-#modalProjectTags .badge {
-    background-color: #6c757d !important;
-    font-size: 0.9em;
-    padding: 8px 12px;
-    border-radius: 5px;
-}
-
-#modalPosterLink, #modalPdfLink {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.95em;
 }
 
 /* Ders Programı Stilleri */
