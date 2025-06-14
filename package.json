@@ -8,7 +8,6 @@
       "build": "electron-builder",
       "kiosk": "electron . --kiosk"
     },
-    "author": "",
     "license": "ISC",
     "devDependencies": {
       "electron": "^28.1.0",
