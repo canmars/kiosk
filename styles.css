@@ -446,18 +446,14 @@ html, body {
 }
 
 .project-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: #1a2a3a;
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: color 0.3s ease;
-    order: 1;
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: var(--dark-gray);
+    margin-bottom: 0.7rem;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+    display: block;
 }
 
 .project-card:hover .project-title {
@@ -656,17 +652,14 @@ html, body {
     }
 
     .project-title {
-        font-size: 1.8rem;
+        font-size: 2.7rem;
+        font-weight: 900;
+        color: var(--dark-gray);
         margin-bottom: 0.8rem;
-        font-weight: 800;
-        color: #1a2a3a;
-        line-height: 1.3;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        transition: color 0.3s ease;
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
+        display: block;
     }
 
     .project-card:hover .project-title {
@@ -1070,13 +1063,14 @@ html, body {
 }
 
 .project-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: color 0.3s ease;
-    order: 1;
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: var(--dark-gray);
+    margin-bottom: 0.7rem;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+    display: block;
 }
 
 .project-description {
@@ -1092,11 +1086,14 @@ html, body {
 
 @media (min-width: 1920px) and (min-height: 1080px) {
     .project-title {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        font-size: 2.7rem;
+        font-weight: 900;
+        color: var(--dark-gray);
+        margin-bottom: 0.8rem;
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
+        display: block;
     }
     .project-description {
         display: -webkit-box;

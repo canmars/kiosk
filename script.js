@@ -188,7 +188,6 @@ function renderProjects(projectsToRender) {
             const categoryClass = categoryColors[project.category] || 'bg-secondary-light';
             const cardHtml = `
                 <div class="project-card" data-project-id="${project.studentNumber}">
-                    <img src="${project.projectPhotoUrl || 'assets/project-placeholder.png'}" alt="Proje Resmi" class="project-card-img">
                     <div class="project-card-content">
                         <h5 class="project-title">${project.title}</h5>
                         <p class="project-category-on-card badge ${categoryClass} mb-2">${project.category}</p>
