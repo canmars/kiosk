@@ -3,11 +3,26 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e3ecfa 0%, #f5f8ff 100%);
+    /* Yavaşça değişen gradient animasyonu */
+    background: linear-gradient(135deg, #667eea, #764ba2, #43cea2, #185a9d);
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease-in-out infinite;
     display: flex;
     flex-direction: column;
     writing-mode: horizontal-tb !important;
     text-orientation: mixed !important;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* --- NAVBAR LOGO & YAZI DÜZENİ --- */
