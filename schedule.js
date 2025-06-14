@@ -1,4 +1,4 @@
-const courseSchedule =[
+export const courseSchedule =[
     {
       "code": "GSM 1002",
       "name": "02 Müzik II.",
@@ -1101,7 +1101,7 @@ const courseSchedule =[
     },
 ];
 
-const academicTerms = [
+export const academicTerms = [
   {
     name: "2024-2025 Güz",
     term: "guz",
