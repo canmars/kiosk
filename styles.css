@@ -804,6 +804,12 @@ body:has(#proje-sergisi.active)::before {
 }
 
 #projectDetailModal #modalProjectDescription {
+    color: #ffffff !important; /* White text color */
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    opacity: 0.95;
+    white-space: pre-line;
     display: block;
     -webkit-line-clamp: unset;
     line-clamp: unset;
@@ -811,7 +817,6 @@ body:has(#proje-sergisi.active)::before {
     overflow: visible;
     text-overflow: unset;
     max-height: unset;
-    white-space: pre-line;
 }
 
 #projectDetailModal #modalProjectTitle {
