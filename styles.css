@@ -11,8 +11,11 @@ html, body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
     writing-mode: horizontal-tb !important;
     text-orientation: mixed !important;
+    z-index: -1;
 }
 
 @keyframes gradientShift {
@@ -499,7 +502,10 @@ html, body {
 }
 
 .main-content {
-    padding: 24px 20px 20px 20px;
+    padding: 2rem 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
     height: auto;
     flex-grow: 1;
     overflow-y: auto;
@@ -508,7 +514,9 @@ html, body {
 
 .content-page {
     display: none;
-    height: 100%;
+    padding: 2rem 0;
+    position: relative;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -1668,6 +1676,97 @@ body:has(#proje-sergisi.active)::before {
     }
 }
 
+/* === TECH BACKGROUND ANIMATION === */
+.tech-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0.8;
+    pointer-events: none;
+    background: transparent;
+}
+
+.tech-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(100, 255, 218, 0.1);
+    filter: blur(60px);
+    animation: float 25s infinite ease-in-out;
+    will-change: transform, opacity;
+}
+
+.tech-circle-1 {
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(circle, rgba(100,255,218,0.1) 0%, rgba(100,255,218,0) 70%);
+    animation-duration: 25s;
+}
+
+.tech-circle-2 {
+    width: 800px;
+    height: 800px;
+    bottom: -400px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, rgba(59,130,246,0) 70%);
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+.tech-circle-3 {
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    right: -100px;
+    background: radial-gradient(circle, rgba(236,72,153,0.05) 0%, rgba(236,72,153,0) 70%);
+    animation-duration: 35s;
+    animation-delay: -5s;
+}
+
+.tech-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(100, 255, 218, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100, 255, 218, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 80s linear infinite;
+    opacity: 0.7;
+    will-change: background-position;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, 30px) rotate(5deg);
+    }
+    50% {
+        transform: translate(0, 50px) rotate(0deg);
+    }
+    75% {
+        transform: translate(-20px, 30px) rotate(-5deg);
+    }
+}
+
+@keyframes gridMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
 /* === DARK THEME MODERN PROJE KARTI === */
 .darkcard {
     background: rgba(17,34,64,0.88);
@@ -1711,18 +1810,19 @@ body:has(#proje-sergisi.active)::before {
     transform: scale(1.03);
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
 }
+/* Project title styles */
 .darkcard-title {
     color: #f0f4ff;
-    font-size: 1.5rem; /* Increased from 1.3rem */
+    font-size: 1.1rem; /* Reduced size */
     font-weight: 700;
     text-align: center;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     position: relative;
     z-index: 1;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    letter-spacing: -0.2px;
-    line-height: 1.4;
+    letter-spacing: -0.05px;
+    line-height: 1.25;
     display: block;
     width: 100%;
     box-sizing: border-box;
@@ -1898,7 +1998,7 @@ body:has(#proje-sergisi.active)::before {
     .darkcard { padding: 1.1rem 0.3rem 1.1rem 0.3rem; min-height: 320px; }
     .darkcard-photo { width: 64px; height: 64px; }
     .darkcard-name { font-size: 1.05rem; }
-    .darkcard-title { font-size: 1.05rem; }
+    .darkcard-title { font-size: 1rem; }
     .darkcard-desc { font-size: 0.95rem; }
     .darkcard-btn { font-size: 0.95rem; padding: 0.5rem 1rem; }
 }
@@ -1914,19 +2014,19 @@ body:has(#proje-sergisi.active)::before {
 }
 .darkcard-desc-8 {
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-height: 6.5em;
-    max-height: 13em;
-    font-size: 1.08rem;
+    height: 6em; /* Approx 4 lines with line-height 1.5 */
+    font-size: 1rem;
     color: #b3c7e6;
-    line-height: 1.6;
+    line-height: 1.5;
     margin-bottom: 0.7rem;
     text-align: left;
     font-family: 'Segoe UI', Arial, sans-serif;
     font-weight: 500;
+    position: relative;
 }
 .darkcard-category-label {
     font-size: 1.02rem;
