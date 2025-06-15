@@ -210,24 +210,39 @@ function renderProjects(projectsToRender) {
     if (projectsToRender && projectsToRender.length > 0) {
         projectsToRender.forEach(project => {
             const card = document.createElement('div');
-            card.className = 'project-card';
+            card.className = 'darkcard';
             const safeProject = JSON.stringify(project).replace(/'/g, "&apos;");
+
+            // Kategoriye göre class ismi oluştur
+            function kategoriClass(str) {
+                return (str || 'diger')
+                    .toLowerCase()
+                    .replace(/ç/g, 'c')
+                    .replace(/ğ/g, 'g')
+                    .replace(/ı/g, 'i')
+                    .replace(/ö/g, 'o')
+                    .replace(/ş/g, 's')
+                    .replace(/ü/g, 'u')
+                    .replace(/[^a-z0-9]/g, '');
+            }
+            const kategoriClassName = 'category-' + kategoriClass(project.category);
+
             card.innerHTML = `
-                <div class="card-header d-flex align-items-center">
-                    <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="student-photo me-3">
-                    <div class="student-info">
-                        <div class="student-name">${project.studentName}</div>
-                        <div class="project-category-on-card">${project.category}</div>
-                    </div>
+                <div class="darkcard-profile">
+                    <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="darkcard-photo">
+                    <div class="darkcard-name">${project.studentName}</div>
                 </div>
-                <div class="card-body">
-                    <div class="project-title">${project.title}</div>
-                    <p class="project-description">${project.description}</p>
+                <div class="darkcard-title">${project.title}</div>
+                <div class="darkcard-summary-label">Proje Özeti:</div>
+                <div class="darkcard-desc darkcard-desc-8">${project.description}</div>
+                <div class="darkcard-category-label">Proje Kategorisi:</div>
+                <div class="darkcard-category-group">
+                    <span class="darkcard-category ${kategoriClassName}">${project.category}</span>
                 </div>
-                <div class="card-footer d-flex justify-content-end gap-2">
-                    <button class="btn btn-sm btn-outline-primary" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal">Detaylar</button>
-                    ${project.posterUrl ? `<button class="btn btn-sm btn-outline-info me-2" data-media-url="${project.posterUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Posteri Gör</button>` : ''}
-                    ${project.pdfUrl ? `<button class="btn btn-sm btn-outline-secondary" data-media-url="${project.pdfUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal">Raporu Görüntüle</button>` : ''}
+                <div class="darkcard-footer">
+                    <button class="darkcard-btn" data-project='${safeProject}' data-bs-toggle="modal" data-bs-target="#projectDetailModal"><i class="bi bi-info-circle"></i> Detaylar</button>
+                    ${project.posterUrl ? `<button class="darkcard-btn" data-media-url="${project.posterUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal"><i class="bi bi-image"></i> Poster</button>` : ''}
+                    ${project.pdfUrl ? `<button class="darkcard-btn" data-media-url="${project.pdfUrl}" data-bs-toggle="modal" data-bs-target="#mediaViewerModal"><i class="bi bi-file-earmark-pdf"></i> Rapor</button>` : ''}
                 </div>
             `;
             projectCardsContainer.appendChild(card);

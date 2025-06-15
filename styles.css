@@ -1466,3 +1466,204 @@ body:has(#proje-sergisi.active)::before {
         width: 100%;
     }
 }
+
+/* === DARK THEME MODERN PROJE KARTI === */
+.darkcard {
+    background: rgba(17,34,64,0.88);
+    border-radius: 0px;
+    box-shadow: 0 8px 32px rgba(37,99,235,0.13), 0 1.5px 6px rgba(0,0,0,0.10);
+    border: 1.5px solid rgba(100,255,218,0.10);
+    padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 440px;
+    transition: box-shadow 0.25s, transform 0.25s;
+    backdrop-filter: blur(8px);
+}
+.darkcard:hover {
+    box-shadow: 0 16px 48px rgba(100,255,218,0.18), 0 4px 16px rgba(0,0,0,0.13);
+    transform: translateY(-6px) scale(1.03);
+    border-color: #64B5F6;
+    backdrop-filter: none !important;
+    border-radius: 0px;
+}
+.darkcard-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.1rem;
+}
+.darkcard-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #64B5F6;
+    box-shadow: 0 0 24px #64B5F6aa, 0 4px 18px #0a192f;
+    background: #fff;
+    margin-bottom: 0.7rem;
+}
+.darkcard-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+.darkcard-category {
+    display: inline-block;
+    background: rgba(100,181,246,0.18);
+    color: #64B5F6;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.25em 1em;
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+    box-shadow: 0 2px 8px rgba(100,181,246,0.08);
+}
+.darkcard-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+    max-height: unset;
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+    display: block;
+    text-align: center;
+}
+.darkcard-desc {
+    font-size: 1.02rem;
+    color: #b3c7e6;
+    line-height: 1.6;
+    margin-bottom: 0.2rem;
+    min-height: 3.2em;
+    max-height: 4.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: center;
+}
+.darkcard-footer {
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 1.1rem;
+}
+.darkcard-btn {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.08rem;
+    font-weight: 700;
+    border-radius: 14px;
+    padding: 0.7rem 1.5rem;
+    box-shadow: 0 2px 8px #64B5F633;
+    border: none;
+    background: linear-gradient(90deg, #233554 0%, #0a192f 100%);
+    color: #64B5F6;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+.darkcard-btn:hover, .darkcard-btn:focus {
+    background: linear-gradient(90deg, #64B5F6 0%, #1976f3 100%);
+    color: #fff;
+    filter: brightness(1.08);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 18px #64B5F655;
+}
+@media (max-width: 600px) {
+    .darkcard { padding: 1.1rem 0.3rem 1.1rem 0.3rem; min-height: 320px; }
+    .darkcard-photo { width: 64px; height: 64px; }
+    .darkcard-name { font-size: 1.05rem; }
+    .darkcard-title { font-size: 1.05rem; }
+    .darkcard-desc { font-size: 0.95rem; }
+    .darkcard-btn { font-size: 0.95rem; padding: 0.5rem 1rem; }
+}
+
+.darkcard-summary-label {
+    font-size: 1.08rem;
+    color: #64B5F6;
+    font-weight: 700;
+    margin: 0.7rem 0 0.2rem 0;
+    text-align: left;
+    letter-spacing: 0.2px;
+}
+.darkcard-desc-8 {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 6.5em;
+    max-height: 13em;
+    font-size: 1.08rem;
+    color: #b3c7e6;
+    line-height: 1.6;
+    margin-bottom: 0.7rem;
+    text-align: left;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 500;
+}
+.darkcard-category-label {
+    font-size: 1.02rem;
+    color: #64B5F6;
+    font-weight: 700;
+    margin: 0.7rem 0 0.2rem 0;
+    text-align: left;
+    letter-spacing: 0.2px;
+}
+.darkcard-category-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 1.1rem;
+    justify-content: flex-start;
+}
+
+.darkcard-category.category-webteknolojileri {
+    background: rgba(25, 118, 243, 0.18);
+    color: #1976f3;
+}
+.darkcard-category.category-egitim {
+    background: rgba(124, 58, 237, 0.18);
+    color: #7c3aed;
+}
+.darkcard-category.category-oyuneglence {
+    background: rgba(255, 224, 102, 0.18);
+    color: #ffe066;
+}
+.darkcard-category.category-sanayiendustriticaret {
+    background: rgba(0, 188, 212, 0.18);
+    color: #00bcd4;
+}
+.darkcard-category.category-saglikyasamspor {
+    background: rgba(100, 255, 218, 0.18);
+    color: #64ffda;
+}
+.darkcard-category.category-sosyalmedyailetisim {
+    background: rgba(255, 152, 0, 0.18);
+    color: #ff9800;
+}
+.darkcard-category.category-sehircevredoga {
+    background: rgba(136, 146, 176, 0.18);
+    color: #8892b0;
+}
+.darkcard-category.category-analitik {
+    background: rgba(156, 39, 176, 0.18);
+    color: #9c27b0;
+}
+.darkcard-category.category-diger {
+    background: rgba(52, 58, 64, 0.18);
+    color: #343a40;
+}
