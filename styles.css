@@ -96,7 +96,7 @@ html, body {
 .project-card {
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
     max-width: 350px;
@@ -105,14 +105,16 @@ html, body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(226, 232, 240, 0.8);
-    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 20px 16px;
     position: relative;
+    background: #fcfdff;
 }
 
 .project-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 114, 245, 0.1);
+    border-color: rgba(0, 114, 245, 0.2);
 }
 
 .project-card-img-container {
@@ -121,6 +123,8 @@ html, body {
     position: relative;
     border-radius: 12px;
     margin-bottom: 16px;
+    background: #f5f8ff;
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .project-card-img {
@@ -138,49 +142,57 @@ html, body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 0 8px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .project-card-title {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 6px;
-    color: #1a202c;
+    color: #0f172a;
     line-height: 1.4;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    letter-spacing: -0.01em;
 }
 
 .project-card-student {
     font-size: 0.9rem;
-    color: #4a5568;
+    color: #475569;
     margin-bottom: 12px;
     font-weight: 500;
+    opacity: 0.9;
 }
 
 .project-card-category {
     display: inline-block;
-    background: #f8fafc;
-    color: #2d3748;
+    background: #f0f7ff;
+    color: #0066ff;
     padding: 4px 12px;
     border-radius: 16px;
     font-size: 0.75rem;
     font-weight: 600;
     margin-bottom: 12px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(0, 114, 245, 0.2);
     align-self: flex-start;
 }
 
 .project-card-description {
     font-size: 0.875rem;
-    color: #4a5568;
+    color: #475569;
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin: 0 0 16px 0;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     flex-grow: 1;
+    opacity: 0.9;
+    width: 100%;
+    padding: 0;
+    text-align: left;
 }
 
 .project-card-footer {
@@ -189,7 +201,7 @@ html, body {
     align-items: center;
     margin-top: auto;
     padding-top: 12px;
-    border-top: 1px solid #edf2f7;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .project-card-tags {
@@ -200,19 +212,22 @@ html, body {
 }
 
 .project-tag {
-    background: #f8fafc;
-    color: #4a5568;
+    background: #f8fafd;
+    color: #4b5563;
     padding: 2px 10px;
     border-radius: 14px;
     font-size: 0.7rem;
     font-weight: 500;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(0, 0, 0, 0.04);
     transition: all 0.15s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .project-tag:hover {
-    background: #edf2f7;
+    background: #f1f5ff;
+    color: #2563eb;
     transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 /* Responsive adjustments */
