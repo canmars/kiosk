@@ -962,9 +962,15 @@ body:has(#proje-sergisi.active)::before {
     }
 }
 
+.welcome-container,
+.welcome-container *,
+.welcome-container::before,
+.welcome-container::after {
+    border-radius: 0 !important;
+}
+
 .welcome-container {
     background: #0a192f; /* Koyu lacivert tema arkaplanı */
-    border-radius: 12px;
     padding: 2.5rem;
     margin-bottom: 2rem;
     position: relative;
