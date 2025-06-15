@@ -804,13 +804,14 @@ body:has(#proje-sergisi.active)::before {
 }
 
 #projectDetailModal #modalProjectDescription {
-    display: -webkit-box;
-    -webkit-line-clamp: 7; /* Gösterilecek maksimum satır sayısı */
-    line-clamp: 7;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 160px; /* Satır sayısı * satır yüksekliği (yaklaşık) */
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+    text-overflow: unset;
+    max-height: unset;
+    white-space: pre-line;
 }
 
 #projectDetailModal #modalProjectTitle {
@@ -1470,7 +1471,7 @@ body:has(#proje-sergisi.active)::before {
 /* === DARK THEME MODERN PROJE KARTI === */
 .darkcard {
     background: rgba(17,34,64,0.88);
-    border-radius: 0px;
+    border-radius: 18px;
     box-shadow: 0 8px 32px rgba(37,99,235,0.13), 0 1.5px 6px rgba(0,0,0,0.10);
     border: 1.5px solid rgba(100,255,218,0.10);
     padding: 2.2rem 1.2rem 1.5rem 1.2rem;
@@ -1486,7 +1487,7 @@ body:has(#proje-sergisi.active)::before {
     transform: translateY(-6px) scale(1.03);
     border-color: #64B5F6;
     backdrop-filter: none !important;
-    border-radius: 0px;
+    border-radius: 18px;
 }
 .darkcard-profile {
     display: flex;
