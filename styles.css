@@ -151,7 +151,7 @@ html, body {
 }
 
 .project-card-title {
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 6px;
     color: #0f172a;
@@ -189,7 +189,7 @@ html, body {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    overflow: hidden;
+    overflow: hidden;   
     text-overflow: ellipsis;
     flex-grow: 1;
     opacity: 0.9;
@@ -333,17 +333,18 @@ html, body {
     display: flex;
     align-items: center;
     gap: 1.2rem;
-    padding: 1.1rem 2.1rem 1.1rem 1.1rem;
+    padding: 0.8rem 1.2rem 0.8rem 1rem;
     background: linear-gradient(135deg, #f8fafc 60%, #e3ecfa 100%);
-    border-radius: 18px;
-    box-shadow: 0 6px 32px rgba(13,110,253,0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(13,110,253,0.08), 0 1px 4px rgba(0,0,0,0.04);
     border: 1.5px solid #e3ecfa;
-    margin-right: 1.5rem;
-    min-width: 320px;
-    max-width: 420px;
+    margin-right: 1rem;
+    min-width: 280px;
+    max-width: 380px;
     position: relative;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-shrink: 0;
 }
 
 .datetime-info .datetime-label {
@@ -439,6 +440,7 @@ html, body {
     .datetime-info .date {
         border-right: none;
         padding-right: 0;
+        font-size: 0.85rem;
     }
     .datetime-info .time {
         font-size: 1.2rem;
@@ -496,8 +498,11 @@ html, body {
         padding: 0.5rem 0.7rem;
         border-radius: 0 0 10px 10px;
     }
+    .navbar-brand .logo {
+        max-height: 32px !important;
+    }
     .navbar-brand span {
-        font-size: 1em;
+        font-size: 0.9em;
     }
 }
 
@@ -1938,22 +1943,29 @@ body:has(#proje-sergisi.active)::before {
     display: block;
     text-align: center;
 }
+/* Combined and updated .darkcard-desc styles */
 .darkcard-desc {
     font-size: 1.02rem;
     color: #ffffff !important;
     line-height: 1.6;
-    margin: 0 0 0.5rem 0;
-    min-height: 3.2em;
-    max-height: 4.8em;
+    margin: 0 0 0.7rem 0;
+    min-height: 5.6em; /* 3.5 lines with line-height 1.6 */
+    max-height: 8em;   /* 5 lines with line-height 1.6 */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     text-align: left;
     opacity: 0.9;
     padding: 0 0.5rem;
-    line-clamp: 3;
+    line-clamp: 5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 400;
+    position: relative;
+    word-break: break-word;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 .darkcard-footer {
     width: 100%;
@@ -2016,26 +2028,28 @@ body:has(#proje-sergisi.active)::before {
     letter-spacing: 0.2px;
     padding: 0 0.5rem;
 }
-.darkcard-desc-8,
-.darkcard-desc {
+/* .darkcard-desc styles are now combined above */
+.darkcard-desc-8 {
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 8;
+    line-clamp: 8;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 7.5em; /* 5 lines with line-height 1.5 */
-    min-height: 7.5em; /* Ensure consistent height */
+    max-height: 12em; /* 8 lines with line-height 1.5 */
+    min-height: 6em;  /* 4 lines with line-height 1.5 */
     font-size: 1rem;
     color: #b3c7e6;
     line-height: 1.5;
     margin-bottom: 0.7rem;
     text-align: left;
     font-family: 'Segoe UI', Arial, sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     position: relative;
     word-break: break-word;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 0.5rem;
 }
 .darkcard-category-label {
     font-size: 1.02rem;
