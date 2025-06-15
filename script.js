@@ -228,12 +228,12 @@ function renderProjects(projectsToRender) {
             const kategoriClassName = 'category-' + kategoriClass(project.category);
 
             card.innerHTML = `
-                <div class="darkcard-title-wrapper">
-                    <div class="darkcard-title">${project.title}</div>
-                </div>
                 <div class="darkcard-profile">
                     <img src="${project.studentPhotoUrl || 'assets/student-placeholder.png'}" alt="${project.studentName}" class="darkcard-photo">
                     <div class="darkcard-name">${project.studentName}</div>
+                </div>
+                <div class="darkcard-title-wrapper">
+                    <div class="darkcard-title">${project.title}</div>
                 </div>
                 <div class="darkcard-summary-label">Proje Özeti:</div>
                 <div class="darkcard-desc darkcard-desc-8">${project.description}</div>
