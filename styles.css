@@ -1732,7 +1732,7 @@ body:has(#proje-sergisi.active)::before {
 .darkcard-title-wrapper {
     position: relative;
     width: 100%;
-    margin: 0 -2rem 2rem -2rem;
+    margin: 0 -2rem 1rem -2rem;
     padding: 0.5rem 2rem;
     background: linear-gradient(90deg, rgba(30, 58, 138, 0.08) 0%, rgba(30, 58, 138, 0.12) 100%);
     border-bottom: 2px solid rgba(99, 179, 237, 0.4);
