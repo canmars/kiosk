@@ -1712,13 +1712,21 @@ body:has(#proje-sergisi.active)::before {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
 }
 .title-content {
-    font-size: 3rem; /* 48px - Significantly larger than student name */
-    font-weight: 700;
+    font-size: 4rem; /* Increased to 64px for better visibility */
+    font-weight: 800; /* Slightly bolder */
     color: #ffffff;
     padding: 0.8rem 0;
-    line-height: 1.2;
+    line-height: 1.15; /* Slightly tighter line height */
     margin: 0.5rem 0;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+}
+
+/* Ensure the title is responsive on smaller screens */
+@media (max-width: 768px) {
+    .title-content {
+        font-size: 3rem;
+    }
 }
 .darkcard-name {
     font-size: 1.875rem; /* 30px - Reduced from 2.1rem */
@@ -1794,19 +1802,31 @@ body:has(#proje-sergisi.active)::before {
     box-shadow: 0 2px 8px #64B5F633;
     border: none;
     background: linear-gradient(90deg, #233554 0%, #0a192f 100%);
-    color: #64B5F6;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    color: #a8d2ff; /* Lighter blue text for better visibility */
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+
 .darkcard-btn:hover, .darkcard-btn:focus {
-    background: linear-gradient(90deg, #64B5F6 0%, #1976f3 100%);
-    color: #fff;
-    filter: brightness(1.08);
+    background: linear-gradient(90deg, #3a5d8a 0%, #1e3a8a 100%);
+    color: #e0f0ff; /* Even lighter blue on hover */
     transform: translateY(-2px) scale(1.04);
     box-shadow: 0 6px 18px #64B5F655;
+    filter: brightness(1.1);
+}
+
+/* Ensure icons inside buttons also get the light color */
+.darkcard-btn i {
+    color: inherit;
+    transition: transform 0.3s ease;
+}
+
+.darkcard-btn:hover i {
+    transform: scale(1.1);
 }
 @media (max-width: 600px) {
     .darkcard { padding: 1.1rem 0.3rem 1.1rem 0.3rem; min-height: 320px; }
