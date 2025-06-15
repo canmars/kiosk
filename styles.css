@@ -2012,13 +2012,15 @@ body:has(#proje-sergisi.active)::before {
     letter-spacing: 0.2px;
     padding: 0 0.5rem;
 }
-.darkcard-desc-8 {
+.darkcard-desc-8,
+.darkcard-desc {
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 6em; /* Approx 4 lines with line-height 1.5 */
+    max-height: 7.5em; /* 5 lines with line-height 1.5 */
+    min-height: 7.5em; /* Ensure consistent height */
     font-size: 1rem;
     color: #b3c7e6;
     line-height: 1.5;
@@ -2027,6 +2029,9 @@ body:has(#proje-sergisi.active)::before {
     font-family: 'Segoe UI', Arial, sans-serif;
     font-weight: 500;
     position: relative;
+    word-break: break-word;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .darkcard-category-label {
     font-size: 1.02rem;
