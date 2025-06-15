@@ -1696,22 +1696,44 @@ body:has(#proje-sergisi.active)::before {
     margin-bottom: 1.1rem;
 }
 .darkcard-photo {
-    width: 96px;
-    height: 96px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #64B5F6;
-    box-shadow: 0 0 24px #64B5F6aa, 0 4px 18px #0a192f;
+    border: 5px solid #64B5F6;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     background: #fff;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.3rem; /* Further reduced from 0.6rem */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.darkcard-photo:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+.title-content {
+    font-size: 3rem; /* 48px - Significantly larger than student name */
+    font-weight: 700;
+    color: #ffffff;
+    padding: 0.8rem 0;
+    line-height: 1.2;
+    margin: 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 .darkcard-name {
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-size: 1.875rem; /* 30px - Reduced from 2.1rem */
+    font-weight: 700;
     color: #fff;
-    margin-bottom: 0.2rem;
-    letter-spacing: 0.2px;
+    margin: 0.2rem 0 0.8rem 0; /* Further reduced spacing */
+    letter-spacing: 0.8px;
     text-align: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.darkcard-name:hover {
+    color: #64B5F6;
+    transform: scale(1.02);
 }
 .darkcard-category {
     display: inline-block;
