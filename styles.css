@@ -1693,7 +1693,7 @@ body:has(#proje-sergisi.active)::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 .darkcard-photo {
     width: 140px;
@@ -1703,7 +1703,7 @@ body:has(#proje-sergisi.active)::before {
     border: 5px solid #64B5F6;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     background: #fff;
-    margin-bottom: 0.3rem; /* Further reduced from 0.6rem */
+    margin-bottom: 0.1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1712,32 +1712,31 @@ body:has(#proje-sergisi.active)::before {
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
 }
 .darkcard-title {
-    position: relative;
-    font-size: 3.4rem;
-    font-weight: 800;
     color: #f0f4ff;
-    padding: 0.8rem 0;
-    line-height: 1.2;
-    margin: 0;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    font-size: 1.3rem;
     font-weight: 700;
-    letter-spacing: -0.5px;
-    display: inline-block;
-    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
     z-index: 1;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .darkcard-title-wrapper {
+    width: calc(100% + 2.4rem);
+    margin: 1.5rem -1.2rem 0 -1.2rem;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.12), rgba(100, 181, 246, 0.06));
     position: relative;
-    width: 100%;
-    margin: 0 -2rem 1rem -2rem;
-    padding: 0.5rem 2rem;
-    background: linear-gradient(90deg, rgba(30, 58, 138, 0.08) 0%, rgba(30, 58, 138, 0.12) 100%);
-    border-bottom: 2px solid rgba(99, 179, 237, 0.4);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .darkcard-title-wrapper::before {
@@ -1798,7 +1797,7 @@ body:has(#proje-sergisi.active)::before {
     font-size: 1.875rem; /* 30px - Reduced from 2.1rem */
     font-weight: 700;
     color: #fff;
-    margin: 0.2rem 0 0.8rem 0; /* Further reduced spacing */
+    margin: 0.5rem 0 0 0;
     letter-spacing: 0.8px;
     text-align: center;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
