@@ -1740,9 +1740,9 @@ body:has(#proje-sergisi.active)::before {
 }
 .darkcard-desc {
     font-size: 1.02rem;
-    color: #b3c7e6;
+    color: #ffffff !important;
     line-height: 1.6;
-    margin-bottom: 0.2rem;
+    margin: 0 0 0.5rem 0;
     min-height: 3.2em;
     max-height: 4.8em;
     overflow: hidden;
@@ -1750,7 +1750,10 @@ body:has(#proje-sergisi.active)::before {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    text-align: center;
+    text-align: left;
+    opacity: 0.9;
+    padding: 0 0.5rem;
+    line-clamp: 3;
 }
 .darkcard-footer {
     width: 100%;
@@ -1793,12 +1796,13 @@ body:has(#proje-sergisi.active)::before {
 }
 
 .darkcard-summary-label {
-    font-size: 1.08rem;
-    color: #64B5F6;
+    font-size: 1.1rem;
+    color: #64B5F6 !important;
     font-weight: 700;
     margin: 0.7rem 0 0.2rem 0;
     text-align: left;
     letter-spacing: 0.2px;
+    padding: 0 0.5rem;
 }
 .darkcard-desc-8 {
     display: -webkit-box;
