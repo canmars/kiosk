@@ -1943,23 +1943,22 @@ body:has(#proje-sergisi.active)::before {
     display: block;
     text-align: center;
 }
-/* Combined and updated .darkcard-desc styles */
 .darkcard-desc {
-    font-size: 1.02rem;
+    font-size: 1.15rem; /* Increased font size */
     color: #ffffff !important;
-    line-height: 1.6;
-    margin: 0 0 0.7rem 0;
-    min-height: 5.6em; /* 3.5 lines with line-height 1.6 */
-    max-height: 8em;   /* 5 lines with line-height 1.6 */
+    line-height: 1.5; /* Tighter line height for better 3-line display */
+    margin: 0 0 1rem 0;
+    min-height: 4.5em; /* 3 lines with line-height 1.5 */
+    max-height: 4.5em; /* Fixed height for exactly 3 lines */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3; /* Show exactly 3 lines */
     -webkit-box-orient: vertical;
     text-align: left;
     opacity: 0.9;
-    padding: 0 0.5rem;
-    line-clamp: 5;
+    padding: 0 0.8rem;
+    line-clamp: 3; /* Standard property for modern browsers */
     font-family: 'Segoe UI', Arial, sans-serif;
     font-weight: 400;
     position: relative;
@@ -2028,28 +2027,27 @@ body:has(#proje-sergisi.active)::before {
     letter-spacing: 0.2px;
     padding: 0 0.5rem;
 }
-/* .darkcard-desc styles are now combined above */
-.darkcard-desc-8 {
+.darkcard-desc-8,
+.darkcard-desc {
     display: -webkit-box;
-    -webkit-line-clamp: 8;
-    line-clamp: 8;
+    -webkit-line-clamp: 5;
+    line-clamp: 5; /* Standard property for modern browsers */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 12em; /* 8 lines with line-height 1.5 */
-    min-height: 6em;  /* 4 lines with line-height 1.5 */
+    max-height: 7.5em; /* 5 lines with line-height 1.5 */
+    min-height: 7.5em; /* Ensure consistent height */
     font-size: 1rem;
     color: #b3c7e6;
     line-height: 1.5;
     margin-bottom: 0.7rem;
     text-align: left;
     font-family: 'Segoe UI', Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     position: relative;
     word-break: break-word;
-    box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 0 0.5rem;
+    box-sizing: border-box;
 }
 .darkcard-category-label {
     font-size: 1.02rem;
