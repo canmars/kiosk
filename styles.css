@@ -1711,20 +1711,48 @@ body:has(#proje-sergisi.active)::before {
     transform: scale(1.03);
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
 }
-.title-content {
-    font-size: 4rem; /* Increased to 64px for better visibility */
-    font-weight: 800; /* Slightly bolder */
+.darkcard-title {
+    font-size: 3.4rem;
+    font-weight: 800;
     color: #ffffff;
-    padding: 0.8rem 0;
-    line-height: 1.15; /* Slightly tighter line height */
-    margin: 0.5rem 0;
+    padding: 1rem 1.8rem;
+    line-height: 1.2;
+    margin: 1rem -1.2rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, rgba(30, 58, 138, 0.7) 0%, rgba(30, 58, 138, 0.5) 100%);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-left: 4px solid #3b82f6;
+}
+
+.darkcard-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+}
+
+.darkcard-title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1));
+    transform: skewX(-20deg);
+    pointer-events: none;
 }
 
 /* Ensure the title is responsive on smaller screens */
 @media (max-width: 768px) {
-    .title-content {
+    .darkcard-title {
         font-size: 3rem;
     }
 }
