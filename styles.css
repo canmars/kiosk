@@ -1713,7 +1713,7 @@ body:has(#proje-sergisi.active)::before {
 }
 .darkcard-title {
     color: #f0f4ff;
-    font-size: 1.3rem;
+    font-size: 1.5rem; /* Increased from 1.3rem */
     font-weight: 700;
     text-align: center;
     margin: 0;
@@ -1795,7 +1795,7 @@ body:has(#proje-sergisi.active)::before {
     }
 }
 .darkcard-name {
-    font-size: 1.875rem; /* 30px - Reduced from 2.1rem */
+    font-size: 1.6rem; /* Reduced from 1.875rem */
     font-weight: 700;
     color: #fff;
     margin: 0.5rem 0 0 0;
